@@ -1,0 +1,25 @@
+/* MADD Site — block editor only. madd-site.css is loaded too; these rules cover editor markup differences. */
+
+/* Full-width sections keep their side padding in the editor canvas. */
+.is-root-container > .wp-block-group.alignfull[class*="madd-"] { padding-left: 20px; padding-right: 20px; box-sizing: border-box; }
+
+/* Check Rate block preview (inside the white quote card). */
+.madd-rq-preview { position: relative; display: grid; gap: 10px; font-size: 14px; }
+.madd-rq-preview__note { padding: 8px 12px; border-radius: 10px; background: #FFF6E0; color: #7A5600; font-size: 12.5px; font-weight: 600; }
+.madd-rq-preview__tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.madd-rq-preview__tabs span { padding: 10px; border: 1.5px solid #D9E0E8; border-radius: 10px; text-align: center; font-weight: 600; color: var(--madd-navy); }
+.madd-rq-preview__tabs span.is-on { background: var(--madd-yellow); border-color: var(--madd-yellow); }
+.madd-rq-preview__row { display: grid; grid-template-columns: 1fr .7fr 1.4fr; gap: 10px; }
+.madd-rq-preview__input { height: 44px; display: flex; align-items: center; padding: 0 12px; border: 1px solid #D9E0E8; border-radius: 10px; background: #fff; color: #9AA8B6; font-size: 13px; white-space: nowrap; overflow: hidden; }
+.madd-rq-preview__btn { height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 10px; background: var(--madd-yellow); color: var(--madd-navy); font-weight: 700; }
+
+/* Editor adds block margins that the live markup doesn't have. */
+.madd-hero ul.madd-checks > li { margin: 0 !important; }
+.madd-svc > .madd-svc-body, .madd-svc > figure, .madd-svc-body > h3:first-child { margin-top: 0 !important; }
+.madd-svc-grid > .wp-block-column > .madd-svc { margin: 0 !important; width: 100%; }
+
+.is-root-container > .wp-block-group.alignfull[class*="madd-"] { margin-top: 0 !important; margin-bottom: 0 !important; }
+.madd-steps-grid > .madd-step, .madd-free-list > li { margin: 0 !important; }
+.madd-review-grid > .madd-review, .madd-branch-grid > .madd-branch, .madd-faq-list > .madd-faq-item, .madd-review-thumbs > figure { margin: 0 !important; }
+.madd-review > p, .madd-branch > p, .madd-contact-bar > p { margin-top: 0 !important; }
+.madd-card-photo, .madd-review-book, .madd-cta-photo { margin-top: 0 !important; }

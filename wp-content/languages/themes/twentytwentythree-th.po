@@ -1,0 +1,437 @@
+# Translation of Themes - Twenty Twenty-Three in Thai
+# This file is distributed under the same license as the Themes - Twenty Twenty-Three package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: +0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: th\n"
+"Project-Id-Version: Themes - Twenty Twenty-Three\n"
+
+#. Description of the theme
+#: style.css
+#, gp-priority: high
+msgid "Twenty Twenty-Three is designed to take advantage of the new design tools introduced in WordPress 6.1. With a clean, blank base as a starting point, this default theme includes ten diverse style variations created by members of the WordPress community. Whether you want to build a complex or incredibly simple website, you can do it quickly and intuitively through the bundled styles or dive into creation and full customization yourself."
+msgstr ""
+
+#. Theme Name of the theme
+#: style.css
+#, gp-priority: high
+msgid "Twenty Twenty-Three"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Comments Template Part"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Post Meta"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Source Serif Pro"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "System Font"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Inter"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "IBM Plex Mono"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "DM Sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "404"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Blog (Alternative)"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Blank"
+msgstr ""
+
+#: styles/whisper.json
+msgctxt "Style variation name"
+msgid "Whisper"
+msgstr ""
+
+#: styles/sherbet.json
+msgctxt "Gradient name"
+msgid "Tertiary to Secondary to Primary Fixed"
+msgstr ""
+
+#: styles/sherbet.json
+msgctxt "Gradient name"
+msgid "Primary to Secondary to Tertiary Fixed"
+msgstr ""
+
+#: styles/sherbet.json
+msgctxt "Gradient name"
+msgid "Primary to Secondary to Tertiary"
+msgstr ""
+
+#: styles/sherbet.json
+msgctxt "Style variation name"
+msgid "Sherbet"
+msgstr ""
+
+#: styles/pitch.json
+msgctxt "Font size name"
+msgid "2X Large"
+msgstr ""
+
+#: styles/pitch.json
+msgctxt "Font size name"
+msgid "Extra Large"
+msgstr ""
+
+#: styles/pitch.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: styles/pitch.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: styles/pitch.json
+msgctxt "Font size name"
+msgid "small"
+msgstr ""
+
+#: styles/pitch.json
+msgctxt "Space size name"
+msgid "7"
+msgstr ""
+
+#: styles/pitch.json
+msgctxt "Style variation name"
+msgid "Pitch"
+msgstr ""
+
+#: styles/pilgrimage.json
+msgctxt "Gradient name"
+msgid "Dots"
+msgstr ""
+
+#: styles/pilgrimage.json
+msgctxt "Gradient name"
+msgid "Base to Primary"
+msgstr ""
+
+#: styles/pilgrimage.json
+msgctxt "Gradient name"
+msgid "Tertiary to Secondary"
+msgstr ""
+
+#: styles/pilgrimage.json
+msgctxt "Gradient name"
+msgid "Secondary to Primary"
+msgstr ""
+
+#: styles/pilgrimage.json
+msgctxt "Gradient name"
+msgid "Primary to Secondary"
+msgstr ""
+
+#: styles/pilgrimage.json
+msgctxt "Style variation name"
+msgid "Pilgrimage"
+msgstr ""
+
+#: styles/marigold.json
+msgctxt "Font size name"
+msgid "Gigantic"
+msgstr ""
+
+#: styles/marigold.json
+msgctxt "Font size name"
+msgid "Huge"
+msgstr ""
+
+#: styles/marigold.json
+msgctxt "Font size name"
+msgid "Normal"
+msgstr ""
+
+#: styles/marigold.json
+msgctxt "Font size name"
+msgid "Tiny"
+msgstr ""
+
+#: styles/marigold.json styles/pitch.json theme.json
+msgctxt "Space size name"
+msgid "6"
+msgstr ""
+
+#: styles/marigold.json styles/pitch.json theme.json
+msgctxt "Space size name"
+msgid "5"
+msgstr ""
+
+#: styles/marigold.json styles/pitch.json theme.json
+msgctxt "Space size name"
+msgid "4"
+msgstr ""
+
+#: styles/marigold.json styles/pitch.json theme.json
+msgctxt "Space size name"
+msgid "3"
+msgstr ""
+
+#: styles/marigold.json styles/pitch.json theme.json
+msgctxt "Space size name"
+msgid "2"
+msgstr ""
+
+#: styles/marigold.json styles/pitch.json theme.json
+msgctxt "Space size name"
+msgid "1"
+msgstr ""
+
+#: styles/marigold.json
+msgctxt "Style variation name"
+msgid "Marigold"
+msgstr ""
+
+#: styles/grapes.json
+msgctxt "Style variation name"
+msgid "Grapes"
+msgstr ""
+
+#: styles/electric.json
+msgctxt "Style variation name"
+msgid "Electric"
+msgstr ""
+
+#: styles/canary.json
+msgctxt "Style variation name"
+msgid "Canary"
+msgstr ""
+
+#: styles/block-out.json styles/canary.json styles/pilgrimage.json
+#: styles/sherbet.json
+msgctxt "Duotone name"
+msgid "Default filter"
+msgstr ""
+
+#: styles/block-out.json
+msgctxt "Style variation name"
+msgid "Block out"
+msgstr ""
+
+#: styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/electric.json styles/grapes.json styles/marigold.json
+#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
+#: styles/whisper.json theme.json
+msgctxt "Color name"
+msgid "Tertiary"
+msgstr ""
+
+#: styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/electric.json styles/grapes.json styles/marigold.json
+#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
+#: styles/whisper.json theme.json
+msgctxt "Color name"
+msgid "Secondary"
+msgstr ""
+
+#: styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/electric.json styles/grapes.json styles/marigold.json
+#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
+#: styles/whisper.json theme.json
+msgctxt "Color name"
+msgid "Primary"
+msgstr ""
+
+#: styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/electric.json styles/grapes.json styles/marigold.json
+#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
+#: styles/whisper.json theme.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr ""
+
+#: styles/aubergine.json styles/block-out.json styles/canary.json
+#: styles/electric.json styles/grapes.json styles/marigold.json
+#: styles/pilgrimage.json styles/pitch.json styles/sherbet.json
+#: styles/whisper.json theme.json
+msgctxt "Color name"
+msgid "Base"
+msgstr ""
+
+#: styles/aubergine.json
+msgctxt "Gradient name"
+msgid "Primary to Tertiary"
+msgstr ""
+
+#: styles/aubergine.json styles/pilgrimage.json
+msgctxt "Gradient name"
+msgid "Tertiary to Primary"
+msgstr ""
+
+#: styles/aubergine.json
+msgctxt "Gradient name"
+msgid "Base to Secondary to Base"
+msgstr ""
+
+#: styles/aubergine.json
+msgctxt "Gradient name"
+msgid "Secondary to Base"
+msgstr ""
+
+#: styles/aubergine.json
+msgctxt "Style variation name"
+msgid "Aubergine"
+msgstr ""
+
+#: patterns/post-meta.php:64
+msgctxt "Label for a list of post tags"
+msgid "Tags:"
+msgstr ""
+
+#: patterns/post-meta.php:48
+msgctxt "Preposition to show the relationship between the post and its author"
+msgid "by"
+msgstr ""
+
+#: patterns/post-meta.php:36
+msgctxt "Preposition to show the relationship between the post and its categories"
+msgid "in"
+msgstr ""
+
+#: patterns/post-meta.php:28
+msgctxt "Verb to explain the publication status of a post"
+msgid "Posted"
+msgstr ""
+
+#: patterns/post-meta.php
+msgctxt "Pattern title"
+msgid "Post Meta"
+msgstr ""
+
+#: patterns/hidden-no-results.php:10
+msgctxt "Message explaining that there are no results returned from a search"
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr ""
+
+#: patterns/hidden-no-results.php
+msgctxt "Pattern title"
+msgid "Hidden No Results Content"
+msgstr ""
+
+#: patterns/hidden-comments.php:13
+msgctxt "Title of comments section"
+msgid "Comments"
+msgstr ""
+
+#: patterns/hidden-comments.php
+msgctxt "Pattern title"
+msgid "Hidden Comments"
+msgstr ""
+
+#: patterns/hidden-404.php:22 patterns/hidden-no-results.php:14
+msgid "Search"
+msgstr ""
+
+#: patterns/hidden-404.php:22 patterns/hidden-no-results.php:14
+msgctxt "placeholder for search field"
+msgid "Search..."
+msgstr ""
+
+#: patterns/hidden-404.php:22 patterns/hidden-no-results.php:14
+msgctxt "label"
+msgid "Search"
+msgstr ""
+
+#: patterns/hidden-404.php:19
+msgctxt "Message to convey that a webpage could not be found"
+msgid "This page could not be found."
+msgstr ""
+
+#: patterns/hidden-404.php:13
+msgctxt "Error code for a webpage that is not found."
+msgid "404"
+msgstr ""
+
+#: patterns/hidden-404.php
+msgctxt "Pattern title"
+msgid "Hidden 404"
+msgstr ""
+
+#. Translators: WordPress link.
+#: patterns/footer-default.php:19
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: patterns/footer-default.php
+msgctxt "Pattern title"
+msgid "Default Footer"
+msgstr ""
+
+#: patterns/call-to-action.php:24
+msgctxt "sample content for call to action button"
+msgid "Get In Touch"
+msgstr ""
+
+#: patterns/call-to-action.php:15
+msgctxt "sample content for call to action"
+msgid "Got any book recommendations?"
+msgstr ""
+
+#: patterns/call-to-action.php
+msgctxt "Pattern title"
+msgid "Call to action"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css patterns/footer-default.php:20
+#, gp-priority: low
+msgid "https://wordpress.org"
+msgstr ""
+
+#. Author of the theme
+#: style.css
+#, gp-priority: low
+msgid "the WordPress team"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+#, gp-priority: low
+msgid "https://wordpress.org/themes/twentytwentythree"
+msgstr ""
