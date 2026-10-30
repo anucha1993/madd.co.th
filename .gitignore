@@ -1,0 +1,18 @@
+# Server-specific config (database password, keys) — each host keeps its own wp-config.php
+wp-config.php
+.htaccess
+.user.ini
+web.config
+
+# Logs, caches, temporary files
+*.log
+wp-content/upgrade/
+wp-content/cache/
+wp-content/backup*/
+wp-content/uploads/wc-logs/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
