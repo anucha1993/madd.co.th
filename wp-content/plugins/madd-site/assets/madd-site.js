@@ -429,3 +429,29 @@
   });
   update();
 })();
+
+// Prohibited items: search box filters the table rows (and hides groups with no match).
+(function () {
+  var input = document.querySelector(".madd-pro-find input");
+  if (!input) return;
+  var items = Array.prototype.slice.call(document.querySelectorAll(".madd-pro-table tbody tr"));
+  var groups = Array.prototype.slice.call(document.querySelectorAll(".madd-pro-group"));
+  var count = document.querySelector(".madd-pro-count");
+  var empty = document.querySelector(".madd-pro-empty");
+  var total = items.length;
+  items.forEach(function (it) { it.setAttribute("data-text", it.textContent.toLowerCase()); });
+  input.addEventListener("input", function () {
+    var words = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var shown = 0;
+    items.forEach(function (it) {
+      var text = it.getAttribute("data-text");
+      var ok = words.every(function (w) { return text.indexOf(w) !== -1; });
+      it.hidden = !ok;
+      if (ok) shown++;
+    });
+    groups.forEach(function (g) { g.hidden = !g.querySelector("tbody tr:not([hidden])"); });
+    count.textContent = words.length ? shown + " of " + total + " item types match" : total + " prohibited item types";
+    if (empty) empty.hidden = shown > 0;
+  });
+  if (empty) empty.hidden = true;
+})();
