@@ -455,3 +455,41 @@
   });
   if (empty) empty.hidden = true;
 })();
+
+// Contact form ([madd_contact_form]): posts to REST madd/v1/contact, shows field errors / thank-you.
+(function () {
+  var form = document.querySelector(".madd-ct");
+  if (!form) return;
+  form.elements.t.value = Math.floor(Date.now() / 1000);
+  var status = form.querySelector(".madd-ct-status");
+  var send = form.querySelector(".madd-ct-send");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    Array.prototype.forEach.call(form.querySelectorAll(".is-error"), function (f) { f.classList.remove("is-error"); f.removeAttribute("data-error"); });
+    status.hidden = true;
+    send.disabled = true;
+    send.textContent = "Sending…";
+    fetch(form.getAttribute("data-endpoint"), { method: "POST", body: new FormData(form), credentials: "same-origin" })
+      .then(function (res) { return res.json().then(function (json) { return { ok: res.ok, json: json }; }); })
+      .then(function (r) {
+        if (r.ok && r.json && r.json.ok) {
+          form.innerHTML = '<div class="madd-ct-done"><strong>Thank you — your message has been sent.</strong><span>Our team will get back to you as soon as possible. For urgent questions, call +66 (0)2 629 4441-2 or chat with us on LINE.</span></div>';
+          return;
+        }
+        var fields = (r.json && r.json.data && r.json.data.fields) || {};
+        Object.keys(fields).forEach(function (k) {
+          var f = form.querySelector('[data-field="' + k + '"]');
+          if (f) { f.classList.add("is-error"); f.setAttribute("data-error", fields[k]); }
+        });
+        status.textContent = (r.json && r.json.message) || "Sorry, something went wrong. Please try again.";
+        status.hidden = false;
+      })
+      .catch(function () {
+        status.textContent = "Sorry, your message could not be sent. Please try again or contact us by phone or LINE.";
+        status.hidden = false;
+      })
+      .finally(function () {
+        if (send.isConnected) { send.disabled = false; send.textContent = "Send message"; }
+      });
+  });
+})();
