@@ -1168,3 +1168,56 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
   .madd-ab-values { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .madd-ab-custgrid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ---------- Hot Promotion page: Check Rate + promotion rate tables ---------- */
+.madd-promo-head { padding-top: 56px; padding-bottom: 72px; background: radial-gradient(60% 60% at 0% 0%, rgba(244,185,64,.18), transparent 70%), linear-gradient(160deg, #E6F0FA, #F4F8FC 50%, #FFF6E2); scroll-margin-top: 90px; }
+.madd-promo-cols { gap: 56px !important; align-items: center !important; margin: 0 auto !important; }
+.madd-promo-cols > .wp-block-column { flex: 1 1 0 !important; min-width: 0; }
+.madd-promo-head h1.wp-block-heading { margin: 0 0 16px; font-size: clamp(30px, 3.6vw, 46px); line-height: 1.15; letter-spacing: -.015em; color: var(--madd-navy); }
+.madd-promo-head h1 mark, .madd-promo-rates h2 mark { background: none; }
+.madd-promo-head p.madd-promo-lead { margin: 0 0 24px; font-size: 16.5px; line-height: 1.8; color: var(--madd-muted); }
+.madd-promo-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px !important; }
+.madd-promo-highlights > .wp-block-group__inner-container, .madd-promo-hl > .wp-block-group__inner-container { display: contents; }
+.madd-promo-hl { margin: 0 !important; padding: 16px 16px 14px; background: #fff; border: 1px solid var(--madd-line); border-top: 4px solid var(--madd-yellow); border-radius: 14px; }
+.madd-promo-head p.madd-promo-hl-label { margin: 0 0 6px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--madd-muted); }
+.madd-promo-head p.madd-promo-hl-num { margin: 0; font-size: 26px; font-weight: 800; line-height: 1.1; color: var(--madd-navy); }
+.madd-promo-hl-num small { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; color: #D9981C; }
+.madd-promo-head p.madd-promo-jump { margin: 0 0 14px; }
+.madd-promo-jump a { font-weight: 700; color: #D9981C; text-decoration: none; }
+.madd-promo-head p.madd-promo-note { margin: 0; font-size: 13px; line-height: 1.7; color: var(--madd-muted); }
+.madd-promo-head .madd-quote-card { position: relative; padding: 26px 24px 22px; background: #fff; color: var(--madd-ink); border-radius: 22px; box-shadow: 0 40px 80px -40px rgba(39,52,68,.55), 0 0 0 1px var(--madd-line); }
+
+.madd-promo-rates { padding-top: 88px; padding-bottom: 88px; background: #fff; scroll-margin-top: 90px; }
+.madd-promo-rates h2.wp-block-heading { line-height: 1.25; }
+.madd-promo-rates h3.wp-block-heading { margin: 40px 0 6px; font-size: 20px; color: var(--madd-navy); }
+.madd-promo-rates p.madd-promo-sub { margin: 0 0 14px; font-size: 14px; color: var(--madd-muted); }
+.madd-promo-table { margin: 0 !important; overflow-x: auto; border: 1px solid var(--madd-line); border-radius: 16px; -webkit-overflow-scrolling: touch; }
+.madd-promo-table table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14.5px; }
+.madd-promo-table.is-heavy table, .madd-promo-table.is-eu table { min-width: 0; }
+.madd-promo-table th, .madd-promo-table td { padding: 12px 14px; border: 0; border-bottom: 1px solid var(--madd-line); text-align: center; white-space: nowrap; }
+.madd-promo-table thead th { background: var(--madd-navy); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
+.madd-promo-table thead th:first-child { background: #1D2836; color: var(--madd-yellow); }
+.madd-promo-table td:first-child { background: #FFF7E5; color: var(--madd-navy); text-align: left; }
+.madd-promo-table tbody tr:nth-child(even) td:not(:first-child) { background: #F8FAFC; }
+.madd-promo-table tbody tr:hover td:not(:first-child) { background: #FFF3D6; }
+.madd-promo-table tbody tr:last-child td { border-bottom: 0; }
+.madd-promo-table td { font-variant-numeric: tabular-nums; color: var(--madd-ink); }
+.madd-promo-table.is-boxes td small { display: block; font-size: 12px; line-height: 1.6; white-space: normal; color: var(--madd-muted); }
+.madd-promo-table.is-heavy td:last-child { font-size: 18px; font-weight: 800; color: var(--madd-navy); }
+.madd-promo-table.is-eu tbody tr:first-child td { background: var(--madd-yellow) !important; font-size: 16px; color: var(--madd-navy); }
+.madd-promo-table figcaption { margin: 0; padding: 12px 14px; background: #F8FAFC; font-size: 12.5px; line-height: 1.6; text-align: left; color: var(--madd-muted); }
+.madd-promo-two { gap: 28px !important; margin: 0 !important; }
+.madd-promo-two > .wp-block-column { flex: 1 1 0 !important; min-width: 0; }
+.madd-promo-rates p.madd-promo-foot { margin: 28px auto 0; max-width: 900px; text-align: center; font-size: 13px; line-height: 1.7; color: var(--madd-muted); }
+@media (max-width: 1024px) {
+  .madd-promo-cols { flex-wrap: wrap !important; }
+  .madd-promo-cols > .wp-block-column { flex-basis: 100% !important; }
+}
+@media (max-width: 781px) {
+  .madd-promo-head { padding-top: 32px; padding-bottom: 56px; }
+  .madd-promo-highlights { grid-template-columns: minmax(0, 1fr); }
+  .madd-promo-head .madd-quote-card { padding: 20px 16px; }
+  .madd-promo-rates { padding-top: 64px; padding-bottom: 64px; }
+  .madd-promo-table table { font-size: 13.5px; }
+  .madd-promo-table th, .madd-promo-table td { padding: 10px 12px; }
+}
