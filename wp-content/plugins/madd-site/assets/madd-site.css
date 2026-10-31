@@ -952,3 +952,47 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
   .madd-wr-row, .madd-wr-grid { grid-template-columns: 1fr; gap: 0 18px; }
   .madd-wr-grid { gap: 16px; }
 }
+/* ---------- Our strengths: one wide row per strength, photo and text alternating sides ---------- */
+.madd-strengths .madd-feat-grid { grid-template-columns: minmax(0, 1fr); gap: 88px; max-width: 1140px; margin: 0 auto; counter-reset: madd-str; }
+.madd-strengths .madd-feat { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 64px; align-items: center;
+  padding: 0; background: none; border: 0; border-radius: 0; overflow: visible; counter-increment: madd-str; }
+.madd-strengths .madd-feat:hover { box-shadow: none; }
+.madd-strengths .madd-feat > .wp-block-group__inner-container { display: contents; }
+.madd-strengths .madd-feat { isolation: isolate; }
+.madd-strengths .madd-strengths-head { margin-bottom: 96px !important; }
+.madd-strengths .madd-feat .madd-card-photo { grid-row: 1 / span 2; grid-column: 1; position: relative; border-radius: 26px; box-shadow: 22px 22px 0 var(--madd-yellow), 0 40px 60px -40px rgba(39,52,68,.6); }
+.madd-strengths .madd-feat .madd-card-photo img { aspect-ratio: 5 / 4; }
+.madd-strengths .madd-feat h3.wp-block-heading { grid-column: 2; align-self: end; margin: 0 0 24px; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.25; letter-spacing: -.01em; }
+.madd-strengths .madd-feat h3.wp-block-heading::before { display: flex; align-items: center; width: auto; height: auto; margin: 0 0 14px; padding-left: 58px; min-height: 46px; background-position: 12px center; background-size: 22px; background-color: transparent;
+  box-shadow: none; content: "Strength " counter(madd-str, decimal-leading-zero); font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #D9981C; }
+.madd-strengths .madd-feat h3.wp-block-heading::after { content: ""; position: absolute; top: 0; left: 0; width: 46px; height: 46px; border-radius: 13px; background: #FDF3DC; z-index: -1; }
+.madd-strengths .madd-feat h3.wp-block-heading { position: relative; z-index: 0; }
+.madd-strengths .madd-feat .madd-feat-list { grid-column: 2; align-self: start; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 0 !important; }
+.madd-strengths .madd-feat-list li { margin: 0; padding: 18px 18px 18px 52px; background: #fff; border: 1px solid var(--madd-line); border-radius: 16px; font-size: 13.5px; line-height: 1.65; transition: transform .25s, box-shadow .25s, border-color .25s; }
+.madd-strengths .madd-feat-list li:hover { transform: translateY(-3px); border-color: #EBDDBA; box-shadow: 0 18px 34px -24px rgba(39,52,68,.4); }
+.madd-strengths .madd-feat-list li::before { left: 18px; top: 19px; width: 22px; height: 22px; background-size: 12px; }
+.madd-strengths .madd-feat-list li strong { margin-bottom: 4px; font-size: 14.5px; line-height: 1.4; }
+/* big outlined number behind the text */
+.madd-strengths .madd-feat::after { content: counter(madd-str, decimal-leading-zero); position: absolute; top: -40px; right: 0; z-index: -1; font-size: 150px; font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 2px rgba(217,152,28,.22); pointer-events: none; }
+/* even rows: photo on the right */
+.madd-strengths .madd-feat:nth-child(even) .madd-card-photo { grid-column: 2; box-shadow: -22px 22px 0 var(--madd-navy), 0 40px 60px -40px rgba(39,52,68,.6); }
+.madd-strengths .madd-feat:nth-child(even) h3.wp-block-heading, .madd-strengths .madd-feat:nth-child(even) .madd-feat-list { grid-column: 1; grid-row: auto; }
+.madd-strengths .madd-feat:nth-child(even) h3.wp-block-heading { grid-row: 1; }
+.madd-strengths .madd-feat:nth-child(even) .madd-feat-list { grid-row: 2; }
+.madd-strengths .madd-feat:nth-child(even)::after { right: calc(50% + 32px); }
+@media (max-width: 1024px) {
+  .madd-strengths .madd-feat { column-gap: 40px; }
+  .madd-strengths .madd-feat .madd-feat-list { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
+@media (max-width: 781px) {
+  .madd-strengths .madd-feat-grid { gap: 64px; }
+  .madd-strengths .madd-feat, .madd-strengths .madd-feat:nth-child(even) { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+  .madd-strengths .madd-feat .madd-card-photo, .madd-strengths .madd-feat:nth-child(even) .madd-card-photo { grid-column: 1; grid-row: auto; margin: 0 14px 34px 0 !important; box-shadow: 14px 14px 0 var(--madd-yellow); }
+  .madd-strengths .madd-feat:nth-child(even) .madd-card-photo { margin: 0 0 34px 14px !important; box-shadow: -14px 14px 0 var(--madd-navy); }
+  .madd-strengths .madd-feat h3.wp-block-heading, .madd-strengths .madd-feat .madd-feat-list,
+  .madd-strengths .madd-feat:nth-child(even) h3.wp-block-heading, .madd-strengths .madd-feat:nth-child(even) .madd-feat-list { grid-column: 1; grid-row: auto; padding: 0 !important; margin-left: 0; margin-right: 0; }
+  .madd-strengths .madd-feat h3.wp-block-heading { margin-bottom: 16px; }
+  .madd-strengths .madd-feat::after { display: none; }
+  .madd-strengths .madd-feat-list li { padding: 14px 14px 14px 46px; }
+  .madd-strengths .madd-feat-list li::before { left: 14px; top: 15px; }
+}
