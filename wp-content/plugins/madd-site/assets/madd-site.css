@@ -1686,7 +1686,7 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
 .madd-tl { position: relative; max-width: 1040px; margin: 0 auto; }
 .madd-tl > .wp-block-group__inner-container, .madd-tl-item > .wp-block-group__inner-container, .madd-tl-card > .wp-block-group__inner-container { display: contents; }
 /* centre line, dashed yellow fading out at the end */
-.madd-tl::before { content: ""; position: absolute; top: 8px; bottom: 8px; left: 50%; width: 3px; margin-left: -1.5px; background: repeating-linear-gradient(180deg, var(--madd-yellow) 0 10px, transparent 10px 18px); -webkit-mask-image: linear-gradient(180deg, #000 85%, transparent); mask-image: linear-gradient(180deg, #000 85%, transparent); }
+.madd-tl::before { content: ""; position: absolute; top: 8px; bottom: 8px; left: 50%; width: 3px; margin-left: -1.5px; background: repeating-linear-gradient(180deg, var(--madd-yellow) 0 10px, transparent 10px 18px); -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%); mask-image: linear-gradient(180deg, transparent, #000 12%); }
 .madd-tl-item { position: relative; display: grid; grid-template-columns: 1fr 1fr; column-gap: 124px; align-items: center; margin: 0 0 36px !important; }
 .madd-tl-item:last-child { margin-bottom: 0 !important; }
 /* dot on the line, with an icon per milestone */
@@ -1697,8 +1697,8 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
 .madd-tl-item.is-upgrade::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F4B940' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpath d='m9 12 2 2 4-4'/%3E%3C/svg%3E"); }
 .madd-tl-item.is-shop::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F4B940' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0'/%3E%3C/svg%3E"); }
 .madd-tl-item.is-japan::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F4B940' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z'/%3E%3C/svg%3E"); }
-.madd-tl-item:last-child::before { background-color: var(--madd-yellow); filter: none; }
-.madd-tl-item:last-child.is-japan::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23273444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z'/%3E%3C/svg%3E"); }
+.madd-tl-item:first-child::before { background-color: var(--madd-yellow); filter: none; }
+.madd-tl-item:first-child.is-japan::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23273444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z'/%3E%3C/svg%3E"); }
 /* big date on one side, card on the other; sides swap every row */
 .madd-ab-story p.madd-tl-date { grid-column: 1; grid-row: 1; margin: 0; text-align: right; line-height: 1; }
 .madd-tl-date strong { display: block; font-size: clamp(40px, 5vw, 64px); font-weight: 800; letter-spacing: -.02em; color: var(--madd-navy); }
@@ -1713,8 +1713,8 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
 .madd-ab-story .madd-tl-card p.madd-tl-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--madd-yellow); }
 .madd-ab-story .madd-tl-card h3.wp-block-heading { margin: 0 0 8px; font-size: 19px; line-height: 1.35; color: var(--madd-navy); text-align: left; }
 .madd-ab-story .madd-tl-card p:not(.madd-tl-tag) { margin: 0; font-size: 14.5px; line-height: 1.75; color: var(--madd-muted); text-align: left; }
-.madd-tl-item:last-child .madd-tl-card { border-color: var(--madd-yellow); background: #FFFBF1; }
-.madd-tl-item:last-child .madd-tl-card::before { background: #FFFBF1; border-color: var(--madd-yellow); }
+.madd-tl-item:first-child .madd-tl-card { border-color: var(--madd-yellow); background: #FFFBF1; }
+.madd-tl-item:first-child .madd-tl-card::before { background: #FFFBF1; border-color: var(--madd-yellow); }
 
 /* phones / tablets: line on the left, date above each card */
 @media (max-width: 860px) {
