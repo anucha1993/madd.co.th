@@ -24,7 +24,25 @@
 .madd-rb-table tbody tr:last-child td, .madd-rb-table tbody tr:last-child th { border-bottom: 0 !important; }
 .madd-rb-table tfoot th, .madd-rb-table tfoot td { border-top: 1px solid var(--rb-line) !important; border-bottom: 0 !important; background: #F8FAFC; vertical-align: top; white-space: normal; font-size: 12px; line-height: 1.6; color: var(--rb-muted); }
 .madd-rb-table tfoot th { color: var(--rb-navy); }
-.madd-rb-table tfoot td { min-width: 120px; max-width: 220px; text-align: left; }
+.madd-rb-table tfoot td { text-align: left; }
+/* Desktop: the whole table fits the page — no sideways scrolling */
+@media (min-width: 1025px) {
+  .madd-rb-table { min-width: 0; table-layout: fixed; font-size: 14px; }
+  .madd-rb-table th, .madd-rb-table td { padding: 10px 6px; }
+  .madd-rb-table thead th:first-child, .madd-rb-table th[scope="row"] { width: 104px; padding-left: 14px; white-space: normal; }
+  .madd-rb-table thead th { white-space: normal; line-height: 1.25; font-size: 12.5px; }
+  .madd-rb-table tfoot td { padding: 12px 6px; font-size: 11.5px; line-height: 1.5; word-break: break-word; }
+  .madd-rb-table thead th:first-child { border-top-left-radius: var(--rb-radius); }
+  .madd-rb-table thead th:last-child { border-top-right-radius: var(--rb-radius); }
+  /* clip (not hidden) keeps the header row sticky while scrolling the long parcel tables */
+  .madd-rb-scroll { overflow: clip; }
+  .madd-rb-table thead th { z-index: 3; }
+}
+/* Tablet / phone: thin scrollbar instead of the browser's default */
+.madd-rb-scroll { scrollbar-width: thin; scrollbar-color: #C9D2DD transparent; }
+.madd-rb-scroll::-webkit-scrollbar { height: 6px; }
+.madd-rb-scroll::-webkit-scrollbar-thumb { background: #C9D2DD; border-radius: 6px; }
+.madd-rb-scroll::-webkit-scrollbar-track { background: transparent; }
 .madd-rb-table tfoot details { margin-top: 4px; }
 .madd-rb-table tfoot summary { cursor: pointer; font-weight: 700; color: var(--rb-gold-d); }
 .madd-rb-table .is-hit { background: var(--rb-gold) !important; color: var(--rb-navy) !important; font-weight: 800; }
