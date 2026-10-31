@@ -372,3 +372,29 @@
   wrap.appendChild(pager);
   select(0, false);
 })();
+// How to Calculate Shipping Cost: actual vs dimensional (L × W × H ÷ 5,000) weight — the greater is billable.
+(function () {
+  var form = document.querySelector(".madd-calc");
+  if (!form) return;
+  var num = function (name) {
+    var v = parseFloat(form.elements[name].value);
+    return v > 0 ? v : 0;
+  };
+  var out = function (key) { return form.querySelector('[data-out="' + key + '"]'); };
+  var kg = function (v) { return v ? (Math.round(v * 100) / 100).toLocaleString("en-US", { maximumFractionDigits: 2 }) + " kg" : "–"; };
+  var update = function () {
+    var w = num("weight");
+    var dim = num("dim_l") * num("dim_w") * num("dim_h") / 5000; // not "length": form.elements.length is the field count
+    var bill = Math.max(w, dim);
+    out("actual").textContent = kg(w);
+    out("dim").textContent = kg(dim);
+    out("bill").textContent = kg(bill);
+    form.querySelector('[data-box="actual"]').classList.toggle("is-win", w > 0 && w >= dim);
+    form.querySelector('[data-box="dim"]').classList.toggle("is-win", dim > 0 && dim > w);
+    out("note").textContent = !bill ? "Dimensional weight = L × W × H ÷ 5,000. The greater of the two weights is generally used."
+      : dim > w ? "Your parcel is bulky for its weight — you are charged for the dimensional weight."
+      : "Your parcel is heavier than its size — you are charged for the actual weight.";
+  };
+  form.addEventListener("input", update);
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+})();
