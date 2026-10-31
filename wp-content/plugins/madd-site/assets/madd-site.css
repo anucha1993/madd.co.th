@@ -388,6 +388,7 @@
 .madd-about-cols { gap: 72px !important; align-items: center !important; margin: 0 auto !important; }
 .madd-about-cols > .wp-block-column:first-child { flex-basis: 48% !important; }
 .madd-about-cols > .wp-block-column:last-child { flex-basis: 52% !important; }
+@media (min-width: 782px) { .madd-about-cols { flex-direction: row-reverse; } } /* banner on the left; text stays first on phones */
 .madd-about-cols p:not([class*="madd-"]) { margin: 0 0 16px; font-size: 15.5px; line-height: 1.85; color: var(--madd-muted); }
 .madd-about .madd-trust-partners { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 .madd-trust-partners > .wp-block-group__inner-container { display: contents; }
