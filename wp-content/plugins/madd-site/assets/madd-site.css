@@ -1677,4 +1677,7 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
   .madd-quote-card .madd-quote__type { margin: 0; min-width: 0; }
   .madd-ai-toggle { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .madd-quote-card .madd-card-head { margin-bottom: 8px; }
-}
+}#mobile-drawer .drawer-header { position: relative; display: flex; align-items: center; min-height: 72px; padding: 14px 64px 6px 24px; justify-content: flex-start !important; }
+#mobile-drawer .madd-drawer-logo { display: inline-flex; align-items: center; padding: 8px 14px; background: #fff; border-radius: 10px; }
+#mobile-drawer .madd-drawer-logo img { display: block; width: 130px; height: auto; }
+#mobile-drawer .drawer-header .menu-toggle-close { position: absolute; top: 50%; right: 14px; transform: translateY(-50%); }

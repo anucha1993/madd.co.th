@@ -514,3 +514,18 @@
     if (empty) empty.hidden = shown > 0;
   });
 })();
+
+// Mobile menu drawer: the site logo at the top (Kadence's drawer only has the close button).
+(function () {
+  var head = document.querySelector("#mobile-drawer .drawer-header");
+  var logo = document.querySelector(".site-branding img.custom-logo, img.custom-logo");
+  if (!head || !logo || head.querySelector(".madd-drawer-logo")) return;
+  var a = document.createElement("a");
+  a.className = "madd-drawer-logo";
+  a.href = (document.querySelector(".site-branding a") || {}).href || "/";
+  var img = document.createElement("img");
+  img.src = logo.currentSrc || logo.src;
+  img.alt = logo.alt || "MADD";
+  a.appendChild(img);
+  head.insertBefore(a, head.firstChild);
+})();
