@@ -18,6 +18,16 @@ require MADD_SITE_DIR.'includes/tracking.php';
 require MADD_SITE_DIR.'includes/visitors.php';
 require MADD_SITE_DIR.'includes/web-reviews.php';
 
+// All branches are on the Branch page; the old per-branch pages send visitors to their card there.
+add_action('template_redirect', function () {
+    $anchors = [17 => 'khaosan', 18 => 'china-town', 19 => 'chatuchak', 20 => 'town-in-town', 21 => 'pratunam', 22 => 'bangkapi'];
+    $id = get_queried_object_id();
+    if (is_page() && isset($anchors[$id])) {
+        wp_safe_redirect(get_permalink(16).'#'.$anchors[$id], 301);
+        exit;
+    }
+});
+
 // Hero background photo (media library attachment id saved in option madd_hero_image).
 function madd_site_hero_css()
 {

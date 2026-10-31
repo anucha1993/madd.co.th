@@ -256,10 +256,13 @@
   });
 })();
 
-// Handwritten review forms: open the full scanned form in a lightbox, with previous / next.
+// Handwritten review forms and branch maps: open the full image in a lightbox, with previous / next within its group.
 (function () {
-  var links = Array.prototype.slice.call(document.querySelectorAll(".madd-hw-card figure a"));
-  if (!links.length) return;
+  var groups = [".madd-hw-card figure a", ".madd-branch-map a"].map(function (sel) {
+    return Array.prototype.slice.call(document.querySelectorAll(sel));
+  }).filter(function (g) { return g.length; });
+  if (!groups.length) return;
+  var links = groups[0];
   var box = document.createElement("dialog");
   box.className = "madd-hw-lightbox";
   var icon = function (d) {
@@ -275,13 +278,16 @@
   var show = function (i) {
     at = (i + links.length) % links.length;
     img.src = links[at].href;
-    img.alt = (links[at].querySelector("img") || {}).alt || "";
+    img.alt = (links[at].querySelector("img") || {}).alt || links[at].textContent;
   };
-  links.forEach(function (a, i) {
-    a.addEventListener("click", function (e) {
-      e.preventDefault();
-      show(i);
-      box.showModal();
+  groups.forEach(function (group) {
+    group.forEach(function (a, i) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        links = group;
+        show(i);
+        box.showModal();
+      });
     });
   });
   box.querySelector(".madd-hw-close").addEventListener("click", function () { box.close(); });
