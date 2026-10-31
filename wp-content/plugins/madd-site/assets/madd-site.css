@@ -1730,3 +1730,5 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
   .madd-ab-story .madd-tl-card h3.wp-block-heading { font-size: 17px; }
   .madd-ab-story .madd-tl-card p:not(.madd-tl-tag) { font-size: 14px; }
 }
+.madd-ab-philo p.madd-ab-today { max-width: 820px; margin: 22px auto 0; text-align: center; font-size: 16px; line-height: 1.8; color: var(--madd-navy); }
+@media (max-width: 781px) { .madd-ab-philo p.madd-ab-today { font-size: 15px; } }
