@@ -288,6 +288,18 @@ final class Madd_Rate_Book
         ]);
     }
 
+    // A zone's countries under the table; long lists (Zone 9 has 100+) fold after the first few.
+    private static function country_cell(array $countries)
+    {
+        $show = 6;
+        if (count($countries) <= $show + 2) {
+            return esc_html(implode(', ', $countries));
+        }
+
+        return esc_html(implode(', ', array_slice($countries, 0, $show)))
+            .'<details><summary>+'.(count($countries) - $show).' more</summary>'.esc_html(implode(', ', array_slice($countries, $show))).'</details>';
+    }
+
     public static function shortcode($atts = [])
     {
         $atts = shortcode_atts(['book' => ''], $atts, 'madd_rate_book');
@@ -339,7 +351,7 @@ final class Madd_Rate_Book
                             </tbody>
                             <?php if (array_filter($b['zones'], fn ($z) => $z['countries'])) : ?>
                                 <tfoot>
-                                    <tr><th scope="row">Countries</th><?php foreach ($b['zones'] as $z) : ?><td><?php echo esc_html(implode(', ', $z['countries'])); ?></td><?php endforeach; ?></tr>
+                                    <tr><th scope="row">Countries</th><?php foreach ($b['zones'] as $z) : ?><td><?php echo self::country_cell($z['countries']); ?></td><?php endforeach; ?></tr>
                                 </tfoot>
                             <?php endif; ?>
                         </table>

@@ -24,6 +24,9 @@
 .madd-rb-table tbody tr:last-child td, .madd-rb-table tbody tr:last-child th { border-bottom: 0 !important; }
 .madd-rb-table tfoot th, .madd-rb-table tfoot td { border-top: 1px solid var(--rb-line) !important; border-bottom: 0 !important; background: #F8FAFC; vertical-align: top; white-space: normal; font-size: 12px; line-height: 1.6; color: var(--rb-muted); }
 .madd-rb-table tfoot th { color: var(--rb-navy); }
+.madd-rb-table tfoot td { min-width: 120px; max-width: 220px; text-align: left; }
+.madd-rb-table tfoot details { margin-top: 4px; }
+.madd-rb-table tfoot summary { cursor: pointer; font-weight: 700; color: var(--rb-gold-d); }
 .madd-rb-table .is-hit { background: var(--rb-gold) !important; color: var(--rb-navy) !important; font-weight: 800; }
 .madd-rb-table thead .is-hit { box-shadow: inset 0 -3px 0 var(--rb-navy); }
 .madd-rb-table tfoot .is-hit { background: #FCE7B5 !important; font-weight: 600; }
