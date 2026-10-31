@@ -350,6 +350,7 @@
 
 .site-footer .madd-footer-sites-title { margin: 18px 0 6px; color: #fff; }
 .site-footer ul.madd-footer-sites { margin: 0; }
+.site-footer p.madd-footer-sites-note { margin: 10px 0 0; font-size: 12.5px; line-height: 1.6; font-style: italic; opacity: .7; }
 @media (min-width: 1025px) {
   .site-footer .site-footer-row.site-footer-row-columns-4.site-footer-row-column-layout-left-forty { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.15fr) minmax(0, .95fr) minmax(0, 1fr); }
 }
