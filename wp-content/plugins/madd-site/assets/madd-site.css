@@ -490,7 +490,8 @@
 .madd-carrier:hover { box-shadow: 0 24px 48px -30px rgba(39,52,68,.4); }
 .madd-carrier > .wp-block-group__inner-container { display: contents; }
 .madd-carrier-logo { margin: 0 0 22px !important; }
-.madd-carrier-logo img { display: block; height: 64px; width: auto; border-radius: 8px; }
+.madd-carrier-logo img { display: block; height: 96px; width: auto; border-radius: 10px; }
+@media (max-width: 600px) { .madd-carrier-logo img { height: 80px; } }
 .madd-carriers .madd-carrier h3.wp-block-heading { margin: 0 0 4px; font-size: 24px; font-weight: 800; color: var(--madd-navy); }
 .madd-carriers p.madd-carrier-tag { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #D9981C; }
 .madd-carriers p.madd-carrier-text { margin: 0 0 18px; font-size: 15px; line-height: 1.8; color: var(--madd-muted); }
