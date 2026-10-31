@@ -413,14 +413,69 @@
 .madd-about .madd-why-list, .madd-strengths .madd-feat-list { margin: 0 !important; padding: 0 !important; list-style: none; }
 .madd-why-list li, .madd-feat-list li { position: relative; margin: 0 0 10px; padding-left: 26px; font-size: 14px; line-height: 1.7; color: var(--madd-muted); }
 .madd-why-list li:last-child, .madd-feat-list li:last-child { margin-bottom: 0; }
-.madd-why-list li strong, .madd-feat-list li strong { color: var(--madd-navy); }
+.madd-why-list li strong, .madd-feat-list li strong { display: block; margin-bottom: 2px; color: var(--madd-navy); }
 .madd-why-list li::before, .madd-feat-list li::before { content: ""; position: absolute; left: 0; top: 4px; width: 17px; height: 17px; border-radius: 50%; background: #FDF3DC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D9981C' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 10px no-repeat; }
+/* one illustration per reason (assets/why/*.svg) */
+.madd-why-item::before { content: ""; display: block; aspect-ratio: 4 / 3; margin: -8px -8px 18px; border-radius: 14px; background: #FFFBF2 center / contain no-repeat; }
+.madd-why-item.is-partners::before { background-image: url("why/partners.svg"); }
+.madd-why-item.is-years::before { background-image: url("why/years.svg"); }
+.madd-why-item.is-consolidate::before { background-image: url("why/consolidate.svg"); }
+.madd-why-item.is-onground::before { background-image: url("why/onground.svg"); }
+.madd-why-item.is-pricing::before { background-image: url("why/pricing.svg"); }
+.madd-why-item.is-documents::before { background-image: url("why/documents.svg"); }
+.madd-why-item.is-branches::before { background-image: url("why/branches.svg"); }
+.madd-why-item.is-care::before { background-image: url("why/care.svg"); }
+.madd-why-item.is-partnership::before { background-image: url("why/partnership.svg"); }
 @media (max-width: 1024px) {
   .madd-why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 600px) {
   .madd-why-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 40px !important; }
   .madd-why-item { padding: 22px 20px; }
+}
+
+/* Tabs (built by madd-site.js): the 9 titles on the left, one reason at a time on a stacked card on the right */
+.madd-why-tabs { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 36px; align-items: center; margin: 64px auto 0; }
+.madd-why-nav { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.madd-why-nav button { display: flex !important; align-items: center; gap: 14px; width: 100%; margin: 0 !important; padding: 12px 16px !important; border: 1px solid transparent !important; border-radius: 14px !important;
+  background: transparent !important; box-shadow: none !important; color: var(--madd-navy) !important; font: inherit; font-size: 15px !important; font-weight: 600 !important; line-height: 1.35 !important; text-align: left; text-transform: none !important; letter-spacing: 0 !important; cursor: pointer; transition: background .2s, border-color .2s, box-shadow .2s; }
+.madd-why-nav button span { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: rgba(39,52,68,.06); font-size: 12.5px; font-weight: 800; letter-spacing: .04em; color: var(--madd-muted); transition: background .2s, color .2s; }
+.madd-why-nav button:hover { background: rgba(255,255,255,.7) !important; }
+.madd-why-nav button[aria-selected="true"] { background: #fff !important; border-color: var(--madd-line) !important; box-shadow: 0 14px 30px -20px rgba(39,52,68,.35) !important; }
+.madd-why-nav button[aria-selected="true"] span { background: var(--madd-yellow); color: var(--madd-navy); }
+.madd-why-tabs .madd-why-grid { position: relative; display: block; margin: 0 !important; }
+.madd-why-tabs .madd-why-grid::before, .madd-why-tabs .madd-why-grid::after { content: ""; position: absolute; inset: 0; border-radius: 24px; }
+.madd-why-tabs .madd-why-grid::before { background: var(--madd-yellow); transform: rotate(2.5deg) translate(10px, 8px); }
+.madd-why-tabs .madd-why-grid::after { background: var(--madd-navy); transform: rotate(-1.5deg) translate(-6px, 6px); opacity: .9; }
+.madd-why-tabs .madd-why-item { position: relative; z-index: 1; display: none; min-height: 440px; padding: 40px 40px 40px 32px; background: #fff; border: 0; border-radius: 24px; box-shadow: 0 30px 60px -36px rgba(39,52,68,.5); }
+.madd-why-tabs .madd-why-item:hover { box-shadow: 0 30px 60px -36px rgba(39,52,68,.5); }
+.madd-why-tabs .madd-why-item.is-active { display: grid; grid-template-columns: 46% minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: 32px; align-items: start; animation: madd-why-in .45s ease; }
+.madd-why-tabs .madd-why-item::before { grid-row: 1 / span 2; align-self: center; margin: 0; }
+.madd-why-tabs .madd-why-item h3.wp-block-heading { align-self: end; margin: 0 0 18px; font-size: 23px; line-height: 1.3; }
+.madd-why-tabs .madd-why-item h3.wp-block-heading::before { content: attr(data-n) " / 09"; }
+.madd-why-tabs .madd-why-list li { margin-bottom: 16px; font-size: 15px; }
+.madd-why-tabs .madd-why-list li strong { font-size: 15.5px; }
+@keyframes madd-why-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .madd-why-tabs .madd-why-item.is-active { animation: none; } }
+.madd-why-pager { display: none; }
+.madd-why-pager button { display: grid !important; place-items: center; width: 46px; height: 46px; margin: 0 !important; padding: 0 0 3px !important; border: 1px solid var(--madd-line) !important; border-radius: 50% !important; background: #fff !important; box-shadow: none !important; color: var(--madd-navy) !important; font-size: 26px !important; line-height: 1 !important; cursor: pointer; }
+.madd-why-pager button:last-child { background: var(--madd-yellow) !important; border-color: var(--madd-yellow) !important; }
+@media (max-width: 1024px) {
+  .madd-why-tabs { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .madd-why-nav { flex-direction: row; gap: 8px; margin: 0 -16px; padding: 4px 16px 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .madd-why-nav::-webkit-scrollbar { display: none; }
+  .madd-why-nav li { flex: none; scroll-snap-align: start; }
+  .madd-why-nav button { width: 230px; height: 100%; padding: 10px 12px !important; font-size: 13.5px !important; background: rgba(255,255,255,.6) !important; border-color: var(--madd-line) !important; }
+  .madd-why-tabs .madd-why-item { min-height: 0; }
+  .madd-why-pager { display: flex; justify-content: center; gap: 12px; margin-top: 14px; }
+}
+@media (max-width: 781px) {
+  .madd-why-tabs .madd-why-item { padding: 22px 20px 26px; }
+  .madd-why-tabs .madd-why-item.is-active { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+  .madd-why-tabs .madd-why-item::before { grid-row: auto; width: 100%; max-width: 360px; margin: 0 auto 16px; }
+  .madd-why-tabs .madd-why-item h3.wp-block-heading { font-size: 20px; margin-bottom: 14px; }
+  .madd-why-tabs .madd-why-grid::before { transform: rotate(1.5deg) translate(4px, 6px); }
+  .madd-why-tabs .madd-why-grid::after { transform: rotate(-1deg) translate(-3px, 4px); }
 }
 
 /* ---------- UPS & DHL Service: SEND A PARCEL header (old site's wording) + one card per carrier ---------- */

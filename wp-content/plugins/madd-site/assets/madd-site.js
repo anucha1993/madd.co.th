@@ -293,3 +293,76 @@
     if (e.key === "ArrowRight") show(at + 1);
   });
 })();
+
+// Why choose us: turn the 9 reason cards into tabs — titles on the left, one illustrated reason at a time.
+(function () {
+  var grid = document.querySelector(".madd-why-grid");
+  if (!grid) return;
+  var items = Array.prototype.slice.call(grid.querySelectorAll(".madd-why-item"));
+  if (items.length < 2) return;
+  var wrap = document.createElement("div");
+  wrap.className = "madd-why-tabs";
+  var nav = document.createElement("ul");
+  nav.className = "madd-why-nav";
+  nav.setAttribute("role", "tablist");
+  var buttons = items.map(function (item, i) {
+    var n = (i < 9 ? "0" : "") + (i + 1);
+    var h3 = item.querySelector("h3");
+    h3.setAttribute("data-n", n);
+    item.id = item.id || "madd-why-" + n;
+    item.setAttribute("role", "tabpanel");
+    var li = document.createElement("li");
+    var b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-controls", item.id);
+    b.innerHTML = "<span>" + n + "</span>";
+    b.appendChild(document.createTextNode(h3.textContent));
+    b.addEventListener("click", function () { select(i, true); });
+    li.appendChild(b);
+    nav.appendChild(li);
+    return b;
+  });
+  var select = function (i, user) {
+    items.forEach(function (item, j) { item.classList.toggle("is-active", j === i); });
+    buttons.forEach(function (b, j) {
+      b.setAttribute("aria-selected", j === i ? "true" : "false");
+      b.tabIndex = j === i ? 0 : -1;
+    });
+    // keep the chosen title in view when the titles scroll sideways (tablet / phone)
+    if (user && nav.scrollWidth > nav.clientWidth) {
+      nav.scrollTo({ left: buttons[i].parentNode.offsetLeft - 16, behavior: "smooth" });
+    }
+  };
+  nav.addEventListener("keydown", function (e) {
+    var at = buttons.indexOf(document.activeElement);
+    if (at < 0) return;
+    var to = { ArrowDown: at + 1, ArrowRight: at + 1, ArrowUp: at - 1, ArrowLeft: at - 1 }[e.key];
+    if (to === undefined) return;
+    e.preventDefault();
+    to = (to + buttons.length) % buttons.length;
+    select(to, true);
+    buttons[to].focus();
+  });
+  // previous / next under the card (shown on tablet / phone), plus swipe on the card
+  var current = function () { return items.findIndex(function (item) { return item.classList.contains("is-active"); }); };
+  var step = function (d) { select((current() + d + items.length) % items.length, true); };
+  var pager = document.createElement("div");
+  pager.className = "madd-why-pager";
+  pager.innerHTML = '<button type="button" aria-label="Previous reason">‹</button><button type="button" aria-label="Next reason">›</button>';
+  pager.firstChild.addEventListener("click", function () { step(-1); });
+  pager.lastChild.addEventListener("click", function () { step(1); });
+  var x0 = null;
+  grid.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  grid.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    x0 = null;
+    if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+  });
+  grid.parentNode.insertBefore(wrap, grid);
+  wrap.appendChild(nav);
+  wrap.appendChild(grid);
+  wrap.appendChild(pager);
+  select(0, false);
+})();
