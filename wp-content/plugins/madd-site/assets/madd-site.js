@@ -180,3 +180,21 @@
     })
     .catch(function () {});
 })();
+
+// Footer: line the "Our Thai domain names" heading (Contact us column) up with the "Our websites" heading in the
+// first column. Only when the columns sit side by side; stacked on mobile it just follows the contact details.
+(function () {
+  var head = document.querySelector(".site-footer .madd-footer-domains-title");
+  var title = document.querySelector(".site-footer .madd-footer-sites-title");
+  if (!head || !title) return;
+  var align = function () {
+    head.style.marginTop = "";
+    var base = parseFloat(getComputedStyle(head).marginTop) || 0;
+    var gap = title.getBoundingClientRect().top - head.getBoundingClientRect().top;
+    if (window.innerWidth > 1024 && gap > 0) head.style.marginTop = base + gap + "px";
+  };
+  align();
+  window.addEventListener("load", align);
+  window.addEventListener("resize", align);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
+})();
