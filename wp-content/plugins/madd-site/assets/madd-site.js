@@ -493,3 +493,24 @@
       });
   });
 })();
+
+// Shipping Guide: search box filters the article links (and hides topics with no match).
+(function () {
+  var input = document.querySelector(".madd-guide-find input");
+  if (!input) return;
+  var items = Array.prototype.slice.call(document.querySelectorAll(".madd-guide-topic li"));
+  var topics = Array.prototype.slice.call(document.querySelectorAll(".madd-guide-topic"));
+  var empty = document.querySelector(".madd-guide-empty");
+  items.forEach(function (li) { li.setAttribute("data-text", li.textContent.toLowerCase()); });
+  input.addEventListener("input", function () {
+    var words = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var shown = 0;
+    items.forEach(function (li) {
+      var ok = words.every(function (w) { return li.getAttribute("data-text").indexOf(w) !== -1; });
+      li.hidden = !ok;
+      if (ok) shown++;
+    });
+    topics.forEach(function (t) { t.hidden = !t.querySelector("li:not([hidden])"); });
+    if (empty) empty.hidden = shown > 0;
+  });
+})();

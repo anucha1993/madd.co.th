@@ -1550,3 +1550,55 @@ body.single-post .entry-content > .wp-block-image img { border-radius: 16px; box
   .madd-art-cta { padding: 20px 18px; }
   .madd-art-cta p.madd-art-cta-btns, .madd-art-cta-btns a { width: 100%; justify-content: center; }
 }
+
+/* ---------- FAQ page + Shipping Guide ---------- */
+.madd-faqp-head { padding-top: 64px; padding-bottom: 48px; background: radial-gradient(50% 70% at 50% 0%, rgba(244,185,64,.2), transparent 70%), linear-gradient(180deg, #E6F0FA, #F4F8FC 70%, #fff); }
+.madd-faqp-head h1.wp-block-heading { margin: 0 auto 14px; text-align: center; font-size: clamp(32px, 4vw, 50px); line-height: 1.15; letter-spacing: -.015em; color: var(--madd-navy); }
+.madd-faqp-head h1 mark { background: none; }
+.madd-faqp-head .madd-lead { margin-bottom: 0; font-size: 17px; }
+.madd-faqp-list { padding-top: 32px; padding-bottom: 80px; background: #fff; }
+.madd-faqp-group { max-width: 880px !important; margin: 0 auto 40px !important; }
+.madd-faqp-list h2.madd-faqp-gtitle { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; text-align: left; font-size: 20px; color: var(--madd-navy); }
+.madd-faqp-list h2.madd-faqp-gtitle::after { content: ""; flex: 1; height: 1px; background: var(--madd-line); }
+.madd-section p.madd-faqp-more { max-width: 880px; margin: 8px auto 0; padding: 18px 22px; text-align: center; border-radius: 16px; background: var(--madd-soft); font-size: 15px; color: var(--madd-muted); }
+.madd-faqp-more a { font-weight: 800; color: #D9981C; text-decoration: none; }
+.madd-faq p.madd-faq-more { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+.madd-faq-more a { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 30px; background: #fff; border: 1px solid var(--madd-line); font-size: 14px; font-weight: 800; color: var(--madd-navy); text-decoration: none; }
+.madd-faq-more a:first-child { background: var(--madd-navy); border-color: var(--madd-navy); color: #fff; }
+.madd-faq-more a:hover { border-color: var(--madd-yellow); }
+
+.madd-guide-sec { padding-top: 24px; padding-bottom: 80px; background: #fff; }
+.madd-guide { max-width: 1040px; margin: 0 auto; }
+.madd-guide .madd-guide-find { margin-bottom: 36px; }
+.madd-guide-topic { margin: 0 0 40px; }
+.madd-guide-topic[hidden], .madd-guide-topic li[hidden] { display: none !important; }
+.madd-guide-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.madd-guide-head::before { content: ""; flex: none; width: 52px; height: 52px; border-radius: 14px; background: #FFFBF2 center / 46px no-repeat; border: 1px solid #F3EAD3; }
+.madd-guide-topic.is-items .madd-guide-head::before { background-image: url("prohibited/food.svg"); background-size: 36px; }
+.madd-guide-topic.is-cost .madd-guide-head::before { background-image: url("calc/billable.svg"); background-size: 64px; }
+.madd-guide-topic.is-steps .madd-guide-head::before { background-image: url("why/onground.svg"); background-size: 64px; }
+.madd-guide-head h2 { margin: 0; font-size: 22px; color: var(--madd-navy); }
+.madd-guide-head p { margin: 2px 0 0; font-size: 13px; color: var(--madd-muted); }
+.madd-guide-head > div, .madd-guide-head { flex-wrap: wrap; }
+.madd-guide-topic ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.madd-guide-topic li { margin: 0; }
+.madd-guide-topic li a { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 18px 46px 18px 20px; position: relative; background: #fff; border: 1px solid var(--madd-line); border-radius: 16px; text-decoration: none; transition: border-color .2s, box-shadow .2s, transform .2s; }
+.madd-guide-topic li a::after { content: "→"; position: absolute; right: 18px; top: 18px; font-weight: 800; color: #D9981C; transition: transform .2s; }
+.madd-guide-topic li a:hover { border-color: #EBDDBA; box-shadow: 0 18px 36px -28px rgba(39,52,68,.45); transform: translateY(-2px); }
+.madd-guide-topic li a:hover::after { transform: translateX(4px); }
+.madd-guide-topic li strong { font-size: 16px; line-height: 1.4; color: var(--madd-navy); }
+.madd-guide-topic li span { font-size: 13.5px; line-height: 1.65; color: var(--madd-muted); }
+.madd-guide p.madd-guide-empty { padding: 22px; text-align: center; border: 1px dashed var(--madd-line); border-radius: 16px; color: var(--madd-muted); }
+.madd-guide p.madd-guide-empty[hidden] { display: none; }
+
+/* single guide article: crumb back to the guide, no date */
+.madd-art-crumb { margin: 0 0 18px !important; font-size: 14px; font-weight: 700; color: var(--madd-muted); }
+.madd-art-crumb a { color: #D9981C; text-decoration: none; }
+.madd-art-crumb span { margin: 0 4px; color: #B9C2CD; }
+body.single-post .entry-meta .posted-on, body.single-post .entry-meta .posted-on + .meta-divider, body.single-post .entry-meta .meta-divider { display: none; }
+body.single-post .post-navigation-sub, body.single-post .entry-related .entry-meta .posted-on { display: none; }
+@media (max-width: 700px) {
+  .madd-faqp-head { padding-top: 36px; padding-bottom: 32px; }
+  .madd-guide-topic ul { grid-template-columns: minmax(0, 1fr); }
+  .madd-faqp-list, .madd-guide-sec { padding-bottom: 56px; }
+}
