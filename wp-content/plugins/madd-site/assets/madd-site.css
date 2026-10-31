@@ -1602,3 +1602,46 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
   .madd-guide-topic ul { grid-template-columns: minmax(0, 1fr); }
   .madd-faqp-list, .madd-guide-sec { padding-bottom: 56px; }
 }
+
+/* ---------- Mobile polish ---------- */
+/* mobile menu drawer: brand pill button + contact buttons */
+#mobile-drawer .mobile-header-button-wrap { width: 100%; }
+#mobile-drawer .mobile-header-button-inner-wrap { display: block; }
+#mobile-drawer .mobile-header-button { display: flex !important; align-items: center; justify-content: center; width: 100%; height: 48px; margin: 6px 0 0; padding: 0 20px !important; border-radius: 30px !important; font-family: inherit !important; font-size: 15px !important; font-weight: 800 !important; letter-spacing: .04em; }
+#mobile-drawer .mobile-html { width: 100%; }
+#mobile-drawer .mobile-html-inner p { margin: 0; color: #fff; }
+#mobile-drawer p.madd-drawer-title { margin: 18px 0 10px; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #AEB7C2; }
+#mobile-drawer p.madd-drawer-links { display: flex; flex-direction: column; gap: 8px; }
+#mobile-drawer .madd-drawer-links a { display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 16px; border-radius: 12px; background: rgba(255,255,255,.08); font-size: 14.5px; font-weight: 700; color: #fff !important; text-decoration: none !important; }
+#mobile-drawer .madd-drawer-links a::before { content: ""; flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--madd-yellow) center / 12px no-repeat; }
+#mobile-drawer .madd-drawer-links a.is-call::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23273444' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z'/%3E%3C/svg%3E"); }
+#mobile-drawer .madd-drawer-links a.is-line::before { background: #06C755 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.8-3.4 7.9-5.9C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z'/%3E%3C/svg%3E") center / 13px no-repeat; }
+#mobile-drawer .madd-drawer-links a.is-wa::before { background: #25D366 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21l1.7-4.6A9 9 0 1 1 8 19.6z'/%3E%3C/svg%3E") center / 12px no-repeat; }
+
+@media (max-width: 600px) {
+  /* hero: the two call-to-action buttons full width, one per line */
+  .madd-hero .wp-block-buttons { flex-direction: column; align-items: stretch; gap: 10px; }
+  .madd-hero .wp-block-buttons > .wp-block-button { width: 100%; margin: 0 !important; }
+  .madd-hero .wp-block-buttons .wp-block-button__link { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 50px; white-space: nowrap; }
+  /* Google reviews: one card at a time, the next one peeking */
+  .madd-greviews-track > .madd-greview { flex-basis: 86%; }
+  /* branch page buttons: full width, one per line */
+  .madd-branch-btns { flex-direction: column; }
+  .madd-branch-btns .wp-block-button, .madd-branch-page .madd-branch-btns { width: 100%; max-width: none; }
+  .madd-branch-btns .wp-block-button__link { white-space: nowrap; }
+  /* rate book: tabs as one swipeable row */
+  .madd-rb-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; border-radius: 40px; }
+  .madd-rb-tabs::-webkit-scrollbar { display: none; }
+  .madd-rb-tabs button { flex: none; white-space: nowrap; }
+  /* shipping guide: shorter previews */
+  .madd-guide-topic li span { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  /* article prev / next links: wrap instead of running off the screen */
+  body.single-post .post-navigation .nav-links { display: flex; flex-direction: column; gap: 14px; }
+  body.single-post .post-navigation .nav-previous, body.single-post .post-navigation .nav-next { width: 100%; max-width: 100%; padding: 0 !important; text-align: left; }
+  body.single-post .post-navigation a { overflow-wrap: anywhere; }
+  body.single-post .post-navigation .nav-next::before { display: none; }
+}
+@media (max-width: 600px) {
+  .madd-calc-head { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .madd-calc p.madd-calc-title { font-size: 20px; }
+}
