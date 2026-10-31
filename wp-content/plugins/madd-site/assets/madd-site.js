@@ -258,7 +258,7 @@
 
 // Handwritten review forms and branch maps: open the full image in a lightbox, with previous / next within its group.
 (function () {
-  var groups = [".madd-hw-card figure a", ".madd-branch-map a"].map(function (sel) {
+  var groups = [".madd-hw-card figure a", ".madd-branch-mapimg a"].map(function (sel) {
     return Array.prototype.slice.call(document.querySelectorAll(sel));
   }).filter(function (g) { return g.length; });
   if (!groups.length) return;
