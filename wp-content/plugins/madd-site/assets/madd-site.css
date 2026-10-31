@@ -398,6 +398,38 @@
 .madd-about-inset { position: absolute; left: 0; bottom: 0; width: 46%; margin: 0 !important; padding: 7px; background: #fff; border-radius: 18px; box-shadow: 0 24px 50px -20px rgba(39,52,68,.35); }
 .madd-about-inset img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; }
 
+/* ---------- UPS & DHL Service: yellow SEND A PARCEL banner (as on the old site) + one card per carrier ---------- */
+.madd-carriers { padding-top: 96px; padding-bottom: 100px; background: #fff; }
+.madd-carriers-banner { max-width: 980px; margin: 0 auto !important; padding: 40px 48px 44px; text-align: center; background: var(--madd-yellow); border-radius: 24px; box-shadow: 0 30px 60px -40px rgba(217,152,28,.8); }
+.madd-carriers-banner > .wp-block-group__inner-container { display: contents; }
+.madd-carriers p.madd-carriers-send { margin: 0 0 14px; font-size: clamp(24px, 2.6vw, 38px); font-weight: 800; letter-spacing: .03em; line-height: 1.1; color: var(--madd-navy); }
+.madd-carriers-title { max-width: 640px; margin: 0 auto !important; }
+.madd-carriers-title img { display: block; width: 100%; height: auto; }
+.madd-carriers p.madd-carriers-lead { margin: 28px 0 44px; text-align: center; font-size: 18px; font-weight: 600; color: var(--madd-navy); }
+.madd-carriers-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 1080px; margin: 0 auto !important; }
+.madd-carriers-grid > .wp-block-group__inner-container { display: contents; }
+.madd-carrier { margin: 0 !important; padding: 32px 32px 30px; background: #fff; border: 1px solid var(--madd-line); border-top: 5px solid #351C15; border-radius: 20px; transition: box-shadow .25s; }
+.madd-carrier.is-dhl { border-top-color: #D40511; }
+.madd-carrier:hover { box-shadow: 0 24px 48px -30px rgba(39,52,68,.4); }
+.madd-carrier > .wp-block-group__inner-container { display: contents; }
+.madd-carrier-logo { margin: 0 0 22px !important; }
+.madd-carrier-logo img { display: block; height: 64px; width: auto; border-radius: 8px; }
+.madd-carriers .madd-carrier h3.wp-block-heading { margin: 0 0 4px; font-size: 24px; font-weight: 800; color: var(--madd-navy); }
+.madd-carriers p.madd-carrier-tag { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #D9981C; }
+.madd-carriers p.madd-carrier-text { margin: 0 0 18px; font-size: 15px; line-height: 1.8; color: var(--madd-muted); }
+.madd-carriers .madd-carrier-list { margin: 0 !important; padding: 18px 0 0 !important; list-style: none; border-top: 1px dashed var(--madd-line); }
+.madd-carrier-list li { position: relative; margin: 0 0 8px; padding-left: 28px; font-size: 14.5px; line-height: 1.6; color: var(--madd-navy); }
+.madd-carrier-list li::before { content: ""; position: absolute; left: 0; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #FDF3DC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D9981C' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 11px no-repeat; }
+.madd-carriers p.madd-carriers-note { max-width: 1080px; margin: 28px auto 0; text-align: center; font-size: 14px; color: var(--madd-muted); }
+.madd-carriers-note a { margin-left: 6px; font-weight: 700; color: #D9981C; text-decoration: none; white-space: nowrap; }
+@media (max-width: 781px) {
+  .madd-carriers { padding-top: 64px; padding-bottom: 64px; }
+  .madd-carriers-banner { padding: 26px 20px 28px; border-radius: 18px; }
+  .madd-carriers p.madd-carriers-lead { margin: 22px 0 28px; font-size: 16px; }
+  .madd-carriers-grid { grid-template-columns: 1fr; gap: 18px; }
+  .madd-carrier { padding: 26px 22px 24px; }
+}
+
 .madd-strengths { padding-top: 96px; padding-bottom: 100px; background: var(--madd-soft); }
 .madd-strengths-head { gap: 64px !important; align-items: center !important; margin: 0 auto 48px !important; }
 .madd-strengths-head > .wp-block-column:first-child { flex-basis: 50% !important; }
