@@ -205,6 +205,11 @@
     var open = box.querySelector(".madd-wr-open");
     var msg = box.querySelector(".madd-wr-msg");
     if (!form || !open) return;
+    var more = box.querySelector(".madd-wr-more");
+    if (more) more.addEventListener("click", function () {
+      box.querySelectorAll(".madd-wr-item[hidden]").forEach(function (a) { a.hidden = false; });
+      more.parentNode.remove();
+    });
     var opened = 0;
     open.addEventListener("click", function () {
       var show = form.hidden;

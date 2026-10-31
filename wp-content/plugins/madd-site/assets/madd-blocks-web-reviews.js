@@ -14,7 +14,7 @@
     description: "รีวิวที่ลูกค้าเขียนผ่านเว็บ (อนุมัติที่เมนู Website Reviews) พร้อมฟอร์มเขียนรีวิว",
     category: "widgets",
     icon: "star-filled",
-    attributes: { max: { type: "number", default: 6 } },
+    attributes: { max: { type: "number", default: 12 } },
     supports: { html: false },
 
     edit: function (props) {

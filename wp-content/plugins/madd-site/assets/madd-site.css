@@ -845,13 +845,18 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
 .madd-wr-thanks span { color: var(--madd-muted); }
 
 .madd-wr-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 28px; }
-.madd-wr-item { padding: 24px; background: #fff; border: 1px solid var(--madd-line); border-radius: 18px; }
+.madd-wr-item { position: relative; display: flex; flex-direction: column; padding: 24px; background: #fff; border: 1px solid var(--madd-line); border-radius: 18px; }
+.madd-wr-item[hidden] { display: none; }
+.madd-wr .madd-wr-more-wrap { margin: 32px 0 0 !important; text-align: center; }
+.madd-wr .madd-wr-more { padding: 12px 28px !important; border: 1.5px solid var(--madd-navy) !important; border-radius: 40px !important; background: transparent !important; color: var(--madd-navy) !important; font: inherit; font-weight: 700; cursor: pointer; }
+.madd-wr .madd-wr-more:hover { background: var(--madd-navy) !important; color: #fff !important; }
+.madd-wr-sample { position: absolute; top: 14px; right: 14px; padding: 3px 9px; border-radius: 20px; background: #FDECEA; color: #C0392B; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .madd-wr-item header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .madd-wr-item header strong { display: block; font-size: 15.5px; color: var(--madd-navy); }
 .madd-wr-item header small { font-size: 12.5px; color: var(--madd-muted); }
 .madd-wr-avatar { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: #FDF3DC; color: #D9981C; font-weight: 700; }
-.madd-wr-item p { margin: 12px 0 0; font-size: 14.5px; line-height: 1.75; color: var(--madd-ink); }
-.madd-wr-item footer { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--madd-line); font-size: 12.5px; color: var(--madd-muted); }
+.madd-wr-item p { margin: 12px 0 14px; font-size: 14.5px; line-height: 1.75; color: var(--madd-ink); }
+.madd-wr-item footer { margin-top: auto; padding-top: 12px; margin-bottom: 0; padding-top: 12px; border-top: 1px dashed var(--madd-line); font-size: 12.5px; color: var(--madd-muted); }
 @media (max-width: 1024px) { .madd-wr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 781px) {
   .madd-webreviews { padding-top: 64px; padding-bottom: 64px; }

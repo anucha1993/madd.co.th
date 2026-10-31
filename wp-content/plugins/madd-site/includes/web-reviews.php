@@ -45,7 +45,7 @@ add_action('init', function () {
         'category' => 'widgets',
         'icon' => 'star-filled',
         'editor_script' => 'madd-blocks-web-reviews',
-        'attributes' => ['max' => ['type' => 'number', 'default' => 6]],
+        'attributes' => ['max' => ['type' => 'number', 'default' => 12]],
         'supports' => ['html' => false, 'multiple' => false],
         'render_callback' => 'madd_wr_render',
     ]);
@@ -128,12 +128,15 @@ function madd_wr_submit(WP_REST_Request $req)
 
 function madd_wr_render($attrs)
 {
-    $max = max(1, min(24, (int) ($attrs['max'] ?? 6)));
-    $all = get_posts(['post_type' => MADD_WR_TYPE, 'post_status' => 'publish', 'posts_per_page' => -1, 'fields' => 'ids']);
+    $max = max(1, min(24, (int) ($attrs['max'] ?? 12)));
+    $show = 6; // the rest open with "Show more reviews"
+    // Sample (mockup) reviews are saved as private posts: only logged-in editors see them, marked "Sample".
+    $status = current_user_can('edit_posts') ? ['publish', 'private'] : 'publish';
+    $all = get_posts(['post_type' => MADD_WR_TYPE, 'post_status' => $status, 'posts_per_page' => -1, 'fields' => 'ids']);
     $ratings = array_map(fn ($id) => (int) get_post_meta($id, 'madd_rating', true), $all);
     $count = count($ratings);
     $avg = $count ? array_sum($ratings) / $count : 0;
-    $reviews = array_slice(get_posts(['post_type' => MADD_WR_TYPE, 'post_status' => 'publish', 'posts_per_page' => $max]), 0, $max);
+    $reviews = array_slice(get_posts(['post_type' => MADD_WR_TYPE, 'post_status' => $status, 'posts_per_page' => $max]), 0, $max);
     $uid = 'madd-wr-'.wp_unique_id();
 
     ob_start(); ?>
@@ -190,10 +193,11 @@ function madd_wr_render($attrs)
 
         <?php if ($reviews) { ?>
             <div class="madd-wr-grid">
-                <?php foreach ($reviews as $r) {
+                <?php foreach ($reviews as $i => $r) {
                     $rating = (int) get_post_meta($r->ID, 'madd_rating', true);
                     $meta = array_filter([get_post_meta($r->ID, 'madd_country', true) ? 'Shipped to '.get_post_meta($r->ID, 'madd_country', true) : '', get_post_meta($r->ID, 'madd_service', true)]); ?>
-                    <article class="madd-wr-item">
+                    <article class="madd-wr-item"<?php echo $i >= $show ? ' hidden' : ''; ?>>
+                        <?php if ($r->post_status === 'private') { ?><span class="madd-wr-sample" title="Only logged-in editors see sample reviews">Sample</span><?php } ?>
                         <header>
                             <span class="madd-wr-avatar" aria-hidden="true"><?php echo esc_html(mb_strtoupper(mb_substr($r->post_title, 0, 1))); ?></span>
                             <div><strong><?php echo esc_html($r->post_title); ?></strong>
@@ -205,6 +209,9 @@ function madd_wr_render($attrs)
                     </article>
                 <?php } ?>
             </div>
+            <?php if (count($reviews) > $show) { ?>
+                <p class="madd-wr-more-wrap"><button type="button" class="madd-wr-more">Show more reviews</button></p>
+            <?php } ?>
         <?php } ?>
     </div>
     <?php
