@@ -398,15 +398,10 @@
 .madd-about-inset { position: absolute; left: 0; bottom: 0; width: 46%; margin: 0 !important; padding: 7px; background: #fff; border-radius: 18px; box-shadow: 0 24px 50px -20px rgba(39,52,68,.35); }
 .madd-about-inset img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; }
 
-/* ---------- UPS & DHL Service: yellow SEND A PARCEL banner (as on the old site) + one card per carrier ---------- */
+/* ---------- UPS & DHL Service: SEND A PARCEL header (old site's wording) + one card per carrier ---------- */
 .madd-carriers { padding-top: 96px; padding-bottom: 100px; background: #fff; }
-.madd-carriers-banner { max-width: 980px; margin: 0 auto !important; padding: 40px 48px 44px; text-align: center; background: var(--madd-yellow); border-radius: 24px; box-shadow: 0 30px 60px -40px rgba(217,152,28,.8); }
-.madd-carriers-banner > .wp-block-group__inner-container { display: contents; }
-.madd-carriers p.madd-carriers-send { margin: 0 0 14px; font-size: clamp(24px, 2.6vw, 38px); font-weight: 800; letter-spacing: .03em; line-height: 1.1; color: var(--madd-navy); }
-.madd-carriers h2.madd-carriers-heading { margin: 0; text-align: center; font-size: clamp(30px, 4.4vw, 60px); font-weight: 800; line-height: 1.1; letter-spacing: .01em; color: var(--madd-navy); }
-/* Thai line underlined by a thick rule, as in the old site's banner. */
-.madd-carriers-heading .madd-carriers-th { display: table; margin: 0 auto 10px; padding-bottom: 8px; border-bottom: 5px solid var(--madd-navy); font-size: .92em; }
-.madd-carriers p.madd-carriers-lead { margin: 28px 0 44px; text-align: center; font-size: 18px; font-weight: 600; color: var(--madd-navy); }
+.madd-carriers h2.wp-block-heading { line-height: 1.25; }
+.madd-carriers h2 mark { background: none; }
 .madd-carriers-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 1080px; margin: 0 auto !important; }
 .madd-carriers-grid > .wp-block-group__inner-container { display: contents; }
 .madd-carrier { margin: 0 !important; padding: 32px 32px 30px; background: #fff; border: 1px solid var(--madd-line); border-top: 5px solid #351C15; border-radius: 20px; transition: box-shadow .25s; }
@@ -425,8 +420,6 @@
 .madd-carriers-note a { margin-left: 6px; font-weight: 700; color: #D9981C; text-decoration: none; white-space: nowrap; }
 @media (max-width: 781px) {
   .madd-carriers { padding-top: 64px; padding-bottom: 64px; }
-  .madd-carriers-banner { padding: 26px 20px 28px; border-radius: 18px; }
-  .madd-carriers p.madd-carriers-lead { margin: 22px 0 28px; font-size: 16px; }
   .madd-carriers-grid { grid-template-columns: 1fr; gap: 18px; }
   .madd-carrier { padding: 26px 22px 24px; }
 }
