@@ -365,11 +365,16 @@
 .madd-about h2.wp-block-heading, .madd-strengths h2.wp-block-heading { text-align: left; margin: 0 0 22px; font-size: clamp(26px, 2.5vw, 36px); line-height: 1.25; letter-spacing: -.01em; color: var(--madd-navy); }
 .madd-about h2 mark, .madd-strengths h2 mark { background: none; }
 
-.madd-about { padding-top: 100px; padding-bottom: 100px; background: #fff; }
+/* Navy band matching the "WHY CHOOSE MADD" banner image (its background is exactly #273444). */
+.madd-about { padding-top: 40px; padding-bottom: 100px; background: var(--madd-navy); color: #fff; }
+.madd-about .madd-why-banner { max-width: 820px; margin: 0 auto 40px !important; }
+.madd-about .madd-why-banner img { display: block; width: 100%; height: auto; }
+.madd-about h2.wp-block-heading { color: #fff; }
+.madd-about h2 mark { color: var(--madd-yellow) !important; }
 .madd-about-cols { gap: 72px !important; align-items: center !important; margin: 0 auto !important; }
 .madd-about-cols > .wp-block-column:first-child { flex-basis: 48% !important; }
 .madd-about-cols > .wp-block-column:last-child { flex-basis: 52% !important; }
-.madd-about-cols p:not([class*="madd-"]) { margin: 0 0 16px; font-size: 15.5px; line-height: 1.85; color: var(--madd-muted); }
+.madd-about-cols p:not([class*="madd-"]) { margin: 0 0 16px; font-size: 15.5px; line-height: 1.85; color: rgba(255,255,255,.78); }
 .madd-about .madd-trust-partners { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 .madd-trust-partners > .wp-block-group__inner-container { display: contents; }
 .madd-trust-partners figure { margin: 0 !important; }
@@ -379,7 +384,7 @@
 .madd-about-media > .wp-block-group__inner-container { display: contents; }
 .madd-about-main { margin: 0 !important; }
 .madd-about-main img { display: block; width: 100%; aspect-ratio: 5 / 4; object-fit: cover; border-radius: 22px; }
-.madd-about-inset { position: absolute; left: 0; bottom: 0; width: 46%; margin: 0 !important; padding: 7px; background: #fff; border-radius: 18px; box-shadow: 0 24px 50px -20px rgba(39,52,68,.35); }
+.madd-about-inset { position: absolute; left: 0; bottom: 0; width: 46%; margin: 0 !important; padding: 7px; background: var(--madd-navy); border-radius: 18px; box-shadow: 0 24px 50px -20px rgba(0,0,0,.5); }
 .madd-about-inset img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; }
 
 .madd-strengths { padding-top: 96px; padding-bottom: 100px; background: var(--madd-soft); }
@@ -407,6 +412,8 @@
 }
 @media (max-width: 781px) {
   .madd-about, .madd-strengths { padding-top: 64px; padding-bottom: 64px; }
+  .madd-about { padding-top: 24px; }
+  .madd-about .madd-why-banner { margin-bottom: 24px !important; }
   .madd-about-cols, .madd-strengths-head { gap: 36px !important; }
   .madd-about-media { padding: 0 0 36px 20px; }
   .madd-strengths-head { margin-bottom: 32px !important; }
