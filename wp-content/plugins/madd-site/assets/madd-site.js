@@ -257,9 +257,13 @@
   if (!links.length) return;
   var box = document.createElement("dialog");
   box.className = "madd-hw-lightbox";
-  box.innerHTML = '<button type="button" class="madd-hw-close" aria-label="Close">×</button>' +
-    '<button type="button" class="madd-hw-prev" aria-label="Previous">‹</button>' +
-    '<img alt=""><button type="button" class="madd-hw-next" aria-label="Next">›</button>';
+  var icon = function (d) {
+    return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + d + '"/></svg>';
+  };
+  box.innerHTML = '<img alt="">' +
+    '<button type="button" class="madd-hw-btn madd-hw-close" aria-label="Close">' + icon("M6 6l12 12M18 6 6 18") + "</button>" +
+    '<button type="button" class="madd-hw-btn madd-hw-prev" aria-label="Previous">' + icon("M15 5l-7 7 7 7") + "</button>" +
+    '<button type="button" class="madd-hw-btn madd-hw-next" aria-label="Next">' + icon("M9 5l7 7-7 7") + "</button>";
   document.body.appendChild(box);
   var img = box.querySelector("img");
   var at = 0;

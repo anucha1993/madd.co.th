@@ -780,11 +780,14 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
 .madd-hw-lightbox { max-width: min(92vw, 820px); max-height: 94vh; padding: 0; border: 0; border-radius: 10px; background: #fff; overflow: visible; }
 .madd-hw-lightbox::backdrop { background: rgba(20,28,38,.82); }
 .madd-hw-lightbox img { display: block; max-width: 100%; max-height: 94vh; width: auto; height: auto; margin: 0 auto; border-radius: 10px; }
-.madd-hw-lightbox button { position: absolute; width: 44px; height: 44px; border: 0; border-radius: 50%; background: #fff; color: var(--madd-navy);
-  font-size: 28px; line-height: 1; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,.25); }
-.madd-hw-close { top: -14px; right: -14px; }
-.madd-hw-prev { top: 50%; left: -22px; transform: translateY(-50%); }
-.madd-hw-next { top: 50%; right: -22px; transform: translateY(-50%); }
+/* !important: the theme's global button styles (padding, min-width, colours) would otherwise stretch these into ovals. */
+.madd-hw-lightbox .madd-hw-btn { position: absolute; display: grid; place-items: center; width: 44px !important; height: 44px !important; min-width: 0 !important;
+  padding: 0 !important; margin: 0 !important; border: 0 !important; border-radius: 50% !important; background: rgba(39,52,68,.82) !important; color: #fff !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25) !important; cursor: pointer; transition: background .15s; }
+.madd-hw-lightbox .madd-hw-btn:hover { background: var(--madd-yellow) !important; color: var(--madd-navy) !important; }
+.madd-hw-lightbox .madd-hw-close { top: 12px; right: 12px; }
+.madd-hw-lightbox .madd-hw-prev { top: 50%; left: 12px; transform: translateY(-50%); }
+.madd-hw-lightbox .madd-hw-next { top: 50%; right: 12px; transform: translateY(-50%); }
 
 @media (max-width: 1024px) { .madd-hw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 781px) {
@@ -792,7 +795,6 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
   .madd-hw-head { gap: 32px !important; margin-bottom: 44px !important; }
   .madd-hw-head > .madd-hw-book-col { flex-basis: auto !important; max-width: 200px; margin: 0 auto !important; }
   .madd-hw-grid { grid-template-columns: 1fr; gap: 36px; }
-  .madd-hw-prev { left: 6px; } .madd-hw-next { right: 6px; } .madd-hw-close { top: 6px; right: 6px; }
 }
 
 /* ---------- Website reviews: summary bar, write-a-review form, approved reviews ---------- */
