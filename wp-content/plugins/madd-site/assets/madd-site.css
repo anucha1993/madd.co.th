@@ -1333,7 +1333,6 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
 /* ---------- Check Status (tracking) ---------- */
 .madd-status-head { padding-top: 64px; padding-bottom: 80px; background: radial-gradient(50% 60% at 50% 0%, rgba(244,185,64,.2), transparent 70%), linear-gradient(180deg, #E6F0FA, #F4F8FC 60%, #fff); }
 .madd-status-head h1.wp-block-heading { margin: 0 auto 14px; text-align: center; font-size: clamp(32px, 4vw, 50px); line-height: 1.15; letter-spacing: -.015em; color: var(--madd-navy); }
-.madd-status-head h1 mark, .madd-status-carriers h2 mark, .madd-status-about h2 mark { background: none; }
 .madd-status-head .madd-lead { margin-bottom: 32px; font-size: 17px; }
 .madd-status-card { max-width: 820px !important; margin: 0 auto !important; padding: 28px; background: #fff; border-radius: 24px; box-shadow: 0 40px 80px -40px rgba(39,52,68,.5), 0 0 0 1px var(--madd-line); }
 .madd-status-card .madd-tracking { max-width: none; margin: 0; }
@@ -1341,22 +1340,6 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
 .madd-status-chips span { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 30px; background: rgba(255,255,255,.8); border: 1px solid var(--madd-line); font-size: 13px; font-weight: 600; color: var(--madd-navy); }
 .madd-status-chips span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #12A150; }
 
-.madd-status-carriers { padding-top: 80px; padding-bottom: 88px; background: #fff; }
-.madd-status-carriers .madd-lead { margin-bottom: 36px; }
-.madd-status-carrier-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
-.madd-status-carrier { margin: 0; padding: 28px 28px 26px; background: #fff; border: 1px solid var(--madd-line); border-top: 5px solid #D40511; border-radius: 20px; transition: box-shadow .25s; }
-.madd-status-carrier.is-ups { border-top-color: #351C15; }
-.madd-status-carrier:hover { box-shadow: 0 24px 48px -30px rgba(39,52,68,.4); }
-.madd-status-logo { display: block; height: 72px; width: auto; margin-bottom: 18px; border-radius: 10px; }
-.madd-status-carrier p.madd-status-carrier-title { margin: 0 0 6px; font-size: 22px; font-weight: 800; color: var(--madd-navy); }
-.madd-status-carrier p.madd-status-carrier-text { margin: 0 0 18px; font-size: 14.5px; line-height: 1.7; color: var(--madd-muted); }
-.madd-status-carrier-bar { display: flex; gap: 8px; }
-.madd-status-carrier-bar input[type="text"] { flex: 1 1 auto; min-width: 0; height: 48px; margin: 0; padding: 0 14px !important; border: 1.5px solid #D9E0E8 !important; border-radius: 12px !important; font-size: 15px; color: var(--madd-navy); box-shadow: none !important; }
-.madd-status-carrier-bar input[type="text"]:focus { outline: 0; border-color: var(--madd-yellow) !important; box-shadow: 0 0 0 3px rgba(244,185,64,.25) !important; }
-.madd-status-carrier-bar button { flex: none; height: 48px; margin: 0 !important; padding: 0 18px !important; border: 0 !important; border-radius: 12px !important; background: var(--madd-navy) !important; box-shadow: none !important; color: #fff !important; font: inherit; font-size: 14.5px !important; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0 !important; cursor: pointer; }
-.madd-status-carrier.is-dhl .madd-status-carrier-bar button { background: #D40511 !important; }
-.madd-status-carrier.is-ups .madd-status-carrier-bar button { background: #351C15 !important; }
-.madd-status-carrier-bar button:hover { filter: brightness(1.15); }
 
 .madd-status-about { padding-top: 80px; padding-bottom: 80px; background: var(--madd-soft); }
 .madd-status-about h2.wp-block-heading { margin-bottom: 28px; }
@@ -1367,10 +1350,6 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
 @media (max-width: 781px) {
   .madd-status-head { padding-top: 36px; padding-bottom: 56px; }
   .madd-status-card { padding: 18px 14px; border-radius: 18px; }
-  .madd-status-carriers, .madd-status-about { padding-top: 56px; padding-bottom: 56px; }
-  .madd-status-carrier-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .madd-status-carrier { padding: 22px 18px; }
-  .madd-status-carrier-bar { flex-direction: column; }
   .madd-status-text { columns: 1; }
 }
 .madd-status-card .madd-tracking__form { padding: 0; border: 0; background: transparent; }
@@ -1384,3 +1363,5 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
   .madd-status-card .madd-tracking__bar { flex-direction: column; }
 }.madd-status-card .madd-tracking__form, .madd-status-card .madd-tracking { margin-bottom: 0 !important; }
 .madd-status-card .madd-tracking__result:empty, .madd-status-card p:empty { display: none; }
+.madd-status-head h1 mark, .madd-status-about h2 mark { background: none; }
+@media (max-width: 781px) { .madd-status-about { padding-top: 56px; padding-bottom: 56px; } }
