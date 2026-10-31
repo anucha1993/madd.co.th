@@ -1645,3 +1645,36 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
   .madd-calc-head { flex-direction: column; align-items: flex-start; gap: 2px; }
   .madd-calc p.madd-calc-title { font-size: 20px; }
 }
+/* Check rate card on phones: compact so the whole form fits on one screen */
+@media (max-width: 900px) {
+  .madd-hero .madd-quote-card { padding: 16px 14px 14px; border-radius: 18px; }
+  .madd-quote-card .madd-card-head { margin-bottom: 10px; }
+  .madd-quote-card h2.wp-block-heading { font-size: 18px; }
+  .madd-route { display: none !important; } /* decorative TH → ? strip */
+  .madd-ai-toggle { padding: 7px 10px !important; margin-bottom: 10px !important; font-size: 12.5px !important; }
+  .madd-quote-card .madd-quote { font-size: 13.5px; }
+  .madd-quote-card .madd-quote__section + .madd-quote__section { margin-top: 10px; }
+  .madd-quote-card .madd-quote__section-title { margin-bottom: 5px; font-size: 12.5px; }
+  .madd-quote-card .madd-quote__grid, .madd-quote-card .madd-quote__types { gap: 8px; }
+  .madd-quote-card .madd-quote__combo-input { height: 42px !important; font-size: 15px !important; }
+  .madd-quote-card .madd-quote__type-body { padding: 8px 10px; }
+  .madd-quote-card .madd-quote__type-body b { font-size: 14px; }
+  .madd-quote-card .madd-quote__type-body .madd-quote__icon { width: 17px; height: 17px; }
+  .madd-quote-card .madd-quote__packages { gap: 8px; }
+  .madd-quote-card .madd-quote__package { gap: 6px 8px; }
+  .madd-quote-card .madd-quote__field { gap: 2px; }
+  .madd-quote-card .madd-quote__label { font-size: 11px; }
+  /* 16px text stops iPhone zooming into the field */
+  .madd-quote-card .madd-quote input[type="text"], .madd-quote-card .madd-quote input[type="number"] { height: 40px !important; font-size: 16px !important; }
+  .madd-quote-card .madd-quote__control.has-unit input { padding: 0 26px 0 10px !important; }
+  .madd-quote-card .madd-quote__unit { right: 8px; font-size: 11px; }
+  .madd-quote-card .madd-quote__remove { height: 40px; }
+  .madd-quote-card .madd-quote__package-bar { margin-top: 6px; }
+  .madd-quote-card .madd-quote__add { padding: 5px 10px !important; font-size: 12.5px !important; }
+  .madd-quote-card .madd-quote__submit { height: 46px; margin-top: 12px !important; font-size: 15.5px !important; }
+}@media (max-width: 900px) {
+  .madd-quote-card .madd-quote__types { display: grid !important; grid-template-columns: 1fr 1fr; }
+  .madd-quote-card .madd-quote__type { margin: 0; min-width: 0; }
+  .madd-ai-toggle { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .madd-quote-card .madd-card-head { margin-bottom: 8px; }
+}
