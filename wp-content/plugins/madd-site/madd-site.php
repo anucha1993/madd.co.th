@@ -16,6 +16,7 @@ define('MADD_SITE_URL', plugin_dir_url(__FILE__));
 require MADD_SITE_DIR.'includes/google-reviews.php';
 require MADD_SITE_DIR.'includes/tracking.php';
 require MADD_SITE_DIR.'includes/visitors.php';
+require MADD_SITE_DIR.'includes/web-reviews.php';
 
 // Hero background photo (media library attachment id saved in option madd_hero_image).
 function madd_site_hero_css()

@@ -198,3 +198,89 @@
   window.addEventListener("resize", align);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
 })();
+// Website reviews: open/close the "Write a review" form and send it to /madd/v1/review.
+(function () {
+  document.querySelectorAll(".madd-wr").forEach(function (box) {
+    var form = box.querySelector(".madd-wr-form");
+    var open = box.querySelector(".madd-wr-open");
+    var msg = box.querySelector(".madd-wr-msg");
+    if (!form || !open) return;
+    var opened = 0;
+    open.addEventListener("click", function () {
+      var show = form.hidden;
+      form.hidden = !show;
+      open.setAttribute("aria-expanded", String(show));
+      open.textContent = show ? "Close" : "Write a review";
+      if (show) {
+        opened = opened || Math.floor(Date.now() / 1000);
+        form.elements.t.value = opened;
+        form.querySelector("input[name=rating]").focus();
+      }
+    });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      form.querySelectorAll(".is-error").forEach(function (f) { f.classList.remove("is-error"); f.removeAttribute("data-error"); });
+      var btn = form.querySelector(".madd-wr-submit");
+      btn.disabled = true;
+      msg.className = "madd-wr-msg";
+      msg.textContent = "Sending…";
+      fetch(box.getAttribute("data-endpoint"), { method: "POST", body: new FormData(form), credentials: "same-origin" })
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (res.ok) {
+            form.reset();
+            form.innerHTML = '<div class="madd-wr-thanks"><strong>Thank you for your review!</strong>' +
+              "<span>It will appear on our website after our team has checked it.</span></div>";
+            return;
+          }
+          var fields = (res.d && res.d.data && res.d.data.fields) || {};
+          Object.keys(fields).forEach(function (k) {
+            var f = form.querySelector('[data-field="' + k + '"]');
+            if (f) { f.classList.add("is-error"); f.setAttribute("data-error", fields[k]); }
+          });
+          msg.className = "madd-wr-msg is-error";
+          msg.textContent = (res.d && res.d.message) || "Sorry, something went wrong. Please try again.";
+          btn.disabled = false;
+        })
+        .catch(function () {
+          msg.className = "madd-wr-msg is-error";
+          msg.textContent = "Sorry, something went wrong. Please try again.";
+          btn.disabled = false;
+        });
+    });
+  });
+})();
+
+// Handwritten review forms: open the full scanned form in a lightbox, with previous / next.
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll(".madd-hw-card figure a"));
+  if (!links.length) return;
+  var box = document.createElement("dialog");
+  box.className = "madd-hw-lightbox";
+  box.innerHTML = '<button type="button" class="madd-hw-close" aria-label="Close">×</button>' +
+    '<button type="button" class="madd-hw-prev" aria-label="Previous">‹</button>' +
+    '<img alt=""><button type="button" class="madd-hw-next" aria-label="Next">›</button>';
+  document.body.appendChild(box);
+  var img = box.querySelector("img");
+  var at = 0;
+  var show = function (i) {
+    at = (i + links.length) % links.length;
+    img.src = links[at].href;
+    img.alt = (links[at].querySelector("img") || {}).alt || "";
+  };
+  links.forEach(function (a, i) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      show(i);
+      box.showModal();
+    });
+  });
+  box.querySelector(".madd-hw-close").addEventListener("click", function () { box.close(); });
+  box.querySelector(".madd-hw-prev").addEventListener("click", function () { show(at - 1); });
+  box.querySelector(".madd-hw-next").addEventListener("click", function () { show(at + 1); });
+  box.addEventListener("click", function (e) { if (e.target === box) box.close(); });
+  box.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") show(at - 1);
+    if (e.key === "ArrowRight") show(at + 1);
+  });
+})();

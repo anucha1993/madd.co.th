@@ -17,6 +17,7 @@ if (! defined('ABSPATH')) {
 
 const MADD_GR_OPTION = 'madd_google_reviews';
 const MADD_GR_DATA   = 'madd_google_reviews_data';
+const MADD_GR_MIN_RATING = 3; // reviews below this many stars are not kept
 
 // slug => [label, text-search query, Google Maps CID (decimal of the 0x… id in the branch's Maps link)]
 function madd_gr_branches()
@@ -122,7 +123,7 @@ function madd_gr_data($refresh = false)
             $author = $r['authorAttribution']['displayName'] ?? 'Google user';
             $key = madd_gr_review_key($author, $text);
             // The same person often posts one review on several branch listings: keep it once.
-            if (($r['rating'] ?? 0) < 4 || mb_strlen($text) < 20 || isset($data['reviews'][$key])) {
+            if (($r['rating'] ?? 0) < MADD_GR_MIN_RATING || mb_strlen($text) < 20 || isset($data['reviews'][$key])) {
                 continue;
             }
             $data['reviews'][$key] = [
