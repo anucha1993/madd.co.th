@@ -1681,3 +1681,15 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
 #mobile-drawer .madd-drawer-logo { display: inline-flex; align-items: center; padding: 8px 14px; background: #fff; border-radius: 10px; }
 #mobile-drawer .madd-drawer-logo img { display: block; width: 130px; height: auto; }
 #mobile-drawer .drawer-header .menu-toggle-close { position: absolute; top: 50%; right: 14px; transform: translateY(-50%); }
+/* swipe indicator under sideways rows (phones) */
+.madd-swipe { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 16px auto 0; }
+.madd-swipe[hidden] { display: none !important; }
+.madd-swipe-hint { display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; color: var(--madd-muted); transition: opacity .3s; }
+.madd-swipe-hint span { display: inline-block; animation: madd-nudge 1.4s ease-in-out infinite; }
+.madd-swipe.is-end .madd-swipe-hint { opacity: 0; }
+.madd-swipe-dots { display: flex; gap: 6px; }
+.madd-swipe-dots button { width: 8px; height: 8px; min-height: 0; margin: 0 !important; padding: 0 !important; border: 0 !important; border-radius: 8px !important; background: #CBD3DD !important; box-shadow: none !important; cursor: pointer; transition: width .25s, background .25s; }
+.madd-swipe-dots button.is-on { width: 22px; background: var(--madd-yellow) !important; }
+@keyframes madd-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+@media (prefers-reduced-motion: reduce) { .madd-swipe-hint span { animation: none; } }
+@media (min-width: 1025px) { .madd-swipe { display: none !important; } }

@@ -529,3 +529,46 @@
   a.appendChild(img);
   head.insertBefore(a, head.firstChild);
 })();
+// Sideways-scrolling rows on phones (services, Google reviews): dots + "Swipe" hint so visitors know there is more.
+(function () {
+  var rows = [
+    [".madd-services .madd-svc-grid", ":scope > .wp-block-column"],
+    [".madd-greviews-track", ":scope > .madd-greview"],
+  ];
+  rows.forEach(function (r) {
+    Array.prototype.forEach.call(document.querySelectorAll(r[0]), function (track) {
+      var items = Array.prototype.slice.call(track.querySelectorAll(r[1]));
+      if (items.length < 2) return;
+      var bar = document.createElement("div");
+      bar.className = "madd-swipe";
+      bar.innerHTML = '<span class="madd-swipe-hint">Swipe <span aria-hidden="true">→</span></span><span class="madd-swipe-dots"></span>';
+      var dots = bar.querySelector(".madd-swipe-dots");
+      var buttons = items.map(function (item, i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", "Show item " + (i + 1));
+        b.addEventListener("click", function () {
+          track.scrollBy({ left: item.getBoundingClientRect().left - track.getBoundingClientRect().left, behavior: "smooth" });
+        });
+        dots.appendChild(b);
+        return b;
+      });
+      (track.closest(".madd-greviews-slider") || track).insertAdjacentElement("afterend", bar);
+      var update = function () {
+        bar.hidden = track.scrollWidth <= track.clientWidth + 4; // everything fits: no indicator
+        // the item whose left edge is closest to the row's left edge
+        var left = track.getBoundingClientRect().left, at = 0, best = Infinity;
+        items.forEach(function (item, i) {
+          var d = Math.abs(item.getBoundingClientRect().left - left);
+          if (d < best) { best = d; at = i; }
+        });
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) at = items.length - 1;
+        buttons.forEach(function (b, i) { b.classList.toggle("is-on", i === at); });
+        bar.classList.toggle("is-end", at === items.length - 1);
+      };
+      track.addEventListener("scroll", function () { window.requestAnimationFrame(update); }, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    });
+  });
+})();
