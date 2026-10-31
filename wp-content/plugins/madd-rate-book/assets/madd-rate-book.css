@@ -1,0 +1,40 @@
+/* MADD Rate Book — override the colours with: .madd-rb { --rb-navy: #273444; --rb-gold: #F4B940; } */
+.madd-rb { --rb-navy: #273444; --rb-gold: #F4B940; --rb-gold-d: #D9981C; --rb-cream: #FFF7E5; --rb-line: #E4E9F0; --rb-muted: #5B6878; --rb-radius: 16px; color: var(--rb-navy); }
+.madd-rb-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.madd-rb-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 5px; background: #F1F4F8; border-radius: 40px; }
+.madd-rb-tabs button { margin: 0 !important; padding: 9px 18px !important; border: 0 !important; border-radius: 40px !important; background: transparent !important; box-shadow: none !important; color: var(--rb-navy) !important; font: inherit; font-size: 14px !important; font-weight: 700 !important; line-height: 1.3 !important; text-transform: none !important; letter-spacing: 0 !important; cursor: pointer; }
+.madd-rb-tabs button:hover { background: rgba(255,255,255,.7) !important; }
+.madd-rb-tabs button[aria-selected="true"] { background: var(--rb-navy) !important; color: #fff !important; }
+.madd-rb-find { position: relative; flex: 1 1 260px; max-width: 360px; margin-left: auto; }
+.madd-rb-find::before { content: ""; position: absolute; left: 14px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B6878' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") center / contain no-repeat; }
+.madd-rb-find input { width: 100%; height: 44px; margin: 0; padding: 0 14px 0 40px !important; border: 1.5px solid var(--rb-line) !important; border-radius: 40px !important; background: #fff; font-size: 14.5px; color: var(--rb-navy); box-shadow: none !important; }
+.madd-rb-find input:focus { outline: 0; border-color: var(--rb-gold) !important; box-shadow: 0 0 0 3px rgba(244,185,64,.25) !important; }
+.madd-rb-hit { margin: 0 0 12px; padding: 10px 14px; border-radius: 10px; background: #F1F4F8; font-size: 14px; color: var(--rb-muted); }
+.madd-rb-hit.is-found { background: var(--rb-cream); color: var(--rb-navy); font-weight: 600; }
+.madd-rb-title { margin: 0 0 12px; font-size: 20px; color: var(--rb-navy); }
+.madd-rb-scroll { overflow-x: auto; border: 1px solid var(--rb-line); border-radius: var(--rb-radius); -webkit-overflow-scrolling: touch; }
+.madd-rb-table { width: 100%; min-width: 640px; margin: 0 !important; border-collapse: separate; border-spacing: 0; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+.madd-rb-table th, .madd-rb-table td { padding: 11px 14px; border: 0 !important; border-bottom: 1px solid var(--rb-line) !important; text-align: center; white-space: nowrap; }
+.madd-rb-table thead th { position: sticky; top: 0; background: var(--rb-navy); color: #fff; font-size: 13px; font-weight: 700; }
+.madd-rb-table th[scope="row"], .madd-rb-table thead th:first-child { position: sticky; left: 0; z-index: 1; text-align: left; }
+.madd-rb-table thead th:first-child { z-index: 2; background: #1D2836; color: var(--rb-gold); }
+.madd-rb-table tbody th[scope="row"] { background: var(--rb-cream); font-weight: 700; color: var(--rb-navy); }
+.madd-rb-table tbody tr:nth-child(even) td { background: #F8FAFC; }
+.madd-rb-table tbody tr:hover td { background: #FFF3D6; }
+.madd-rb-table tbody tr:last-child td, .madd-rb-table tbody tr:last-child th { border-bottom: 0 !important; }
+.madd-rb-table tfoot th, .madd-rb-table tfoot td { border-top: 1px solid var(--rb-line) !important; border-bottom: 0 !important; background: #F8FAFC; vertical-align: top; white-space: normal; font-size: 12px; line-height: 1.6; color: var(--rb-muted); }
+.madd-rb-table tfoot th { color: var(--rb-navy); }
+.madd-rb-table .is-hit { background: var(--rb-gold) !important; color: var(--rb-navy) !important; font-weight: 800; }
+.madd-rb-table thead .is-hit { box-shadow: inset 0 -3px 0 var(--rb-navy); }
+.madd-rb-table tfoot .is-hit { background: #FCE7B5 !important; font-weight: 600; }
+.madd-rb-na { color: #B9C2CD; }
+.madd-rb-note { margin: 10px 2px 0; font-size: 13px; line-height: 1.6; color: var(--rb-muted); }
+.madd-rb-meta { margin: 12px 2px 0; font-size: 12.5px; color: var(--rb-muted); }
+.madd-rb-empty { padding: 12px 16px; border: 1px dashed #c3c4c7; border-radius: 8px; }
+@media (max-width: 600px) {
+  .madd-rb-find { max-width: none; margin-left: 0; }
+  .madd-rb-tabs { width: 100%; border-radius: 16px; }
+  .madd-rb-tabs button { flex: 1 1 auto; }
+  .madd-rb-table { font-size: 13.5px; }
+  .madd-rb-table th, .madd-rb-table td { padding: 9px 11px; }
+}
