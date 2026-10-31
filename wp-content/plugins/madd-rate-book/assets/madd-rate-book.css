@@ -59,3 +59,22 @@
   .madd-rb-table { font-size: 13.5px; }
   .madd-rb-table th, .madd-rb-table td { padding: 9px 11px; }
 }
+
+/* phones: hint + edge fades on the sideways-scrolling table */
+.madd-rb-scrollwrap { position: relative; }
+.madd-rb-scrollwrap::before, .madd-rb-scrollwrap::after { content: ""; position: absolute; top: 1px; bottom: 1px; z-index: 4; width: 34px; pointer-events: none; opacity: 0; transition: opacity .25s; }
+.madd-rb-scrollwrap::after { right: 1px; border-radius: 0 var(--rb-radius) var(--rb-radius) 0; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(39,52,68,.22)); }
+.madd-rb-scrollwrap::before { left: 104px; background: linear-gradient(270deg, rgba(255,255,255,0), rgba(39,52,68,.14)); }
+.madd-rb-scrollwrap.has-right::after, .madd-rb-scrollwrap.has-left::before { opacity: 1; }
+.madd-rb-swipe { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin: 0 2px 8px; font-size: 12.5px; font-weight: 700; color: var(--rb-gold-d); transition: opacity .3s; }
+.madd-rb-swipe[hidden] { display: none; }
+.madd-rb-swipe span { display: inline-block; animation: madd-rb-nudge 1.4s ease-in-out infinite; }
+.madd-rb-swipe.is-end { opacity: .35; }
+@keyframes madd-rb-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+@media (prefers-reduced-motion: reduce) { .madd-rb-swipe span { animation: none; } }@media (max-width: 600px) {
+  /* tabs: one swipeable row instead of a stack */
+  .madd-rb .madd-rb-tabs { flex-wrap: nowrap; overflow-x: auto; border-radius: 40px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .madd-rb .madd-rb-tabs::-webkit-scrollbar { display: none; }
+  .madd-rb .madd-rb-tabs button { flex: none; white-space: nowrap; }
+  .madd-rb-swipe { margin-top: -4px; }
+}

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: MADD Rate Book
  * Description: ตารางราคาค่าส่ง (Rate Book) ทุกโซน ทุกน้ำหนัก พร้อมช่องค้นหาประเทศ — shortcode [madd_rate_book] หรือ block "MADD Rate Book" · ดึงจากระบบ MADD (ถ้าเปิด endpoint แล้ว) หรือวางตารางจาก Excel ในหน้าตั้งค่า
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: MADD
@@ -23,7 +23,7 @@ if (! defined('ABSPATH')) {
 final class Madd_Rate_Book
 {
     const OPTION = 'madd_rate_book';
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.1';
     const CACHE = 'madd_rate_book_remote';
 
     public static function init()

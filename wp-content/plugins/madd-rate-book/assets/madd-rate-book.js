@@ -84,3 +84,31 @@
 
   Array.prototype.forEach.call(document.querySelectorAll(".madd-rb"), init);
 })();
+
+// Wide tables on phones: "swipe for more zones" hint + fading edges while there is more to the right / left.
+(function () {
+  Array.prototype.forEach.call(document.querySelectorAll(".madd-rb-scroll"), function (box) {
+    var wrap = document.createElement("div");
+    wrap.className = "madd-rb-scrollwrap";
+    box.parentNode.insertBefore(wrap, box);
+    wrap.appendChild(box);
+    var hint = document.createElement("p");
+    hint.className = "madd-rb-swipe";
+    hint.innerHTML = 'Swipe to see more zones <span aria-hidden="true">→</span>';
+    wrap.parentNode.insertBefore(hint, wrap);
+    var update = function () {
+      var more = box.scrollWidth > box.clientWidth + 2;
+      var end = box.scrollLeft + box.clientWidth >= box.scrollWidth - 2;
+      wrap.classList.toggle("has-right", more && !end);
+      wrap.classList.toggle("has-left", more && box.scrollLeft > 2);
+      hint.hidden = !more;
+      hint.classList.toggle("is-end", end);
+    };
+    box.addEventListener("scroll", function () { window.requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener("resize", update);
+    // a hidden tab has no width yet — check again when it is shown
+    var book = box.closest(".madd-rb-book");
+    if (book && window.MutationObserver) new MutationObserver(update).observe(book, { attributes: true, attributeFilter: ["hidden"] });
+    update();
+  });
+})();
