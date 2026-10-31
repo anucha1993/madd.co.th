@@ -398,3 +398,34 @@
   form.addEventListener("input", update);
   form.addEventListener("submit", function (e) { e.preventDefault(); });
 })();
+// How to Calculate: editable worked example — the three steps are redone with the visitor's own numbers.
+(function () {
+  var form = document.querySelector(".madd-calcx");
+  if (!form) return;
+  var names = ["ex_l", "ex_w", "ex_h", "ex_kg"];
+  var val = function (name) {
+    var v = parseFloat(form.elements[name].value);
+    return v > 0 ? v : 0;
+  };
+  var x = function (key) { return form.querySelector('[data-x="' + key + '"]'); };
+  var fmt = function (v) { return (Math.round(v * 100) / 100).toLocaleString("en-US", { maximumFractionDigits: 2 }); };
+  var update = function () {
+    var l = val("ex_l"), w = val("ex_w"), h = val("ex_h"), kg = val("ex_kg");
+    var dim = l * w * h / 5000;
+    var bill = Math.max(kg, dim);
+    x("actual").textContent = fmt(kg) + " kg";
+    x("formula").textContent = fmt(l) + " × " + fmt(w) + " × " + fmt(h) + " ÷ 5,000";
+    x("dim").textContent = fmt(dim) + " kg";
+    x("bill").textContent = fmt(bill) + " kg";
+    form.querySelector('[data-step="actual"]').classList.toggle("is-win", kg > 0 && kg >= dim);
+    form.querySelector('[data-step="dim"]').classList.toggle("is-win", dim > 0 && dim > kg);
+    x("verdict").textContent = !bill ? "Enter the box size and weight." : dim > kg ? "Light but bulky — charged by its size." : "Heavy for its size — charged by its actual weight.";
+  };
+  form.addEventListener("input", update);
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+  form.querySelector(".madd-calcx-reset").addEventListener("click", function () {
+    names.forEach(function (n) { form.elements[n].value = form.elements[n].getAttribute("data-default"); });
+    update();
+  });
+  update();
+})();

@@ -1303,3 +1303,23 @@ img.madd-greview-avatar { object-fit: cover; background: #e9ecf1; }
   .madd-calc-how, .madd-calc-example { padding-top: 64px; padding-bottom: 64px; }
   .madd-calc-excols { gap: 28px !important; }
 }
+
+/* How to Calculate: editable worked example */
+.madd-calcx { margin: 0 0 14px; }
+.madd-calcx p.madd-calcx-intro { margin: 0 0 16px; font-size: 16px; line-height: 2.4; color: var(--madd-muted); }
+.madd-calcx-num { position: relative; display: inline-block; vertical-align: middle; margin: 0 2px; }
+.madd-calcx-num input { width: 92px; height: 42px; margin: 0; padding: 0 30px 0 12px !important; border: 1.5px solid var(--madd-yellow) !important; border-radius: 10px !important; background: #FFF7E5; font-size: 16px; font-weight: 800; color: var(--madd-navy); box-shadow: none !important; -moz-appearance: textfield; }
+.madd-calcx-num input::-webkit-outer-spin-button, .madd-calcx-num input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.madd-calcx-num input:focus { outline: 0; background: #fff; box-shadow: 0 0 0 3px rgba(244,185,64,.3) !important; }
+.madd-calcx-num em { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; font-style: normal; font-weight: 600; color: var(--madd-muted); pointer-events: none; }
+.madd-calcx .madd-calc-exlist { margin: 0 0 12px !important; padding: 0 !important; list-style: none; counter-reset: madd-ex; }
+.madd-calcx .madd-calc-exlist li:last-child { border-color: var(--madd-navy); background: var(--madd-navy); color: #fff; }
+.madd-calcx .madd-calc-exlist li:last-child::before { background: var(--madd-yellow); color: var(--madd-navy); }
+.madd-calcx .madd-calc-exlist li.is-win { border-color: var(--madd-yellow); background: #FFF7E5; }
+.madd-calcx .madd-calc-exlist strong { font-variant-numeric: tabular-nums; }
+.madd-calcx p.madd-calcx-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin: 0; font-size: 14px; font-weight: 700; color: var(--madd-navy); }
+.madd-calcx-reset { margin: 0 !important; padding: 7px 14px !important; border: 1px solid var(--madd-line) !important; border-radius: 30px !important; background: #fff !important; box-shadow: none !important; color: var(--madd-navy) !important; font: inherit; font-size: 13px !important; font-weight: 600 !important; text-transform: none !important; letter-spacing: 0 !important; cursor: pointer; }
+.madd-calcx-reset:hover { border-color: var(--madd-yellow) !important; }
+@media (max-width: 600px) {
+  .madd-calcx-num input { width: 80px; }
+}
