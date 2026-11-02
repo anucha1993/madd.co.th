@@ -1823,3 +1823,16 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
 
 /* hero: the "compare live prices" line, inside the Check shipping rate card above its title */
 .madd-quote-card p.madd-quote-intro { margin: 0 0 12px !important; padding-bottom: 12px; border-bottom: 1px solid var(--madd-line); font-size: 13.5px; line-height: 1.55; color: var(--madd-muted); }
+
+/* ---------- Hero: "Send a parcel" photo (MADD branch + packing) with a yellow label ---------- */
+.madd-hero figure.madd-sendphoto { position: relative; margin: 0 0 26px !important; border-radius: 16px; overflow: hidden; border-bottom: 4px solid var(--madd-yellow); box-shadow: 0 22px 44px -24px rgba(0,0,0,.7); }
+.madd-hero figure.madd-sendphoto img { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 730; object-fit: cover; }
+.madd-hero figure.madd-sendphoto figcaption { position: absolute; left: 14px; top: 14px; margin: 0; padding: 7px 14px; background: var(--madd-yellow); border-radius: 30px; font-size: 13px; font-weight: 800; letter-spacing: .08em; line-height: 1; color: var(--madd-navy); box-shadow: 0 6px 16px -6px rgba(0,0,0,.5); }
+@media (min-width: 901px) {
+  /* as wide as the heading's first line, like the yellow box it replaced */
+  .madd-hero figure.madd-sendphoto { width: calc(13.2 * clamp(28px, 2.7vw, 38px)); max-width: 100%; }
+}
+@media (max-width: 600px) {
+  .madd-hero figure.madd-sendphoto { margin-bottom: 20px !important; border-radius: 14px; }
+  .madd-hero figure.madd-sendphoto figcaption { left: 10px; top: 10px; padding: 6px 11px; font-size: 11.5px; }
+}
