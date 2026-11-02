@@ -580,3 +580,70 @@
     el.classList.toggle("is-end", el.scrollTop + el.clientHeight >= el.scrollHeight - 4);
   }, true);
 })();
+// Check Rate: "Copy rates" — the quotes as a plain-text list (paste into Notepad / LINE / e-mail) with MADD's contact details.
+(function () {
+  var CONTACT = [
+    "MADD Co., Ltd — UPS Authorized Shipping Outlet since 1999",
+    "Tel: +66 (0)2 629 4441-2",
+    "Mobile: 081-838 3226, 098-269 4441",
+    "LINE: madd.co.th",
+    "WhatsApp: 081-838 3226",
+    "Email: customerservice@madd.co.th",
+  ];
+  var text = function (el, sel) { var n = el.querySelector(sel); return n ? n.textContent.replace(/\s+/g, " ").trim() : ""; };
+
+  function build(result) {
+    var lines = ["MADD — International shipping rate estimate"];
+    var route = text(result.closest(".madd-quote") || result, ".madd-quote__route");
+    var summary = text(result.closest(".madd-quote") || result, ".madd-quote__summary-text");
+    if (route) lines.push(route);
+    if (summary) lines.push(summary);
+    lines.push("Date: " + new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }), "");
+    Array.prototype.forEach.call(result.querySelectorAll(".madd-quote__option"), function (o, i) {
+      var badges = Array.prototype.map.call(o.querySelectorAll(".madd-quote__badge"), function (b) { return b.textContent.trim(); });
+      lines.push((i + 1) + ". " + text(o, ".madd-quote__carrier") + " " + text(o, ".madd-quote__service-name") + " — " + text(o, ".madd-quote__amount") + (badges.length ? " (" + badges.join(", ") + ")" : ""));
+    });
+    var note = text(result, ".madd-quote__disclaimer");
+    lines.push("", note || "* Estimated price — the final price is confirmed when you book.", "", "--", CONTACT.join("\n"), "Web: " + location.origin + "/");
+    return lines.join("\n");
+  }
+
+  function copy(str) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(str);
+    return new Promise(function (ok, fail) {
+      var ta = document.createElement("textarea");
+      ta.value = str;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy") ? ok() : fail(); } catch (e) { fail(e); }
+      document.body.removeChild(ta);
+    });
+  }
+
+  function addButton(result) {
+    if (!result.querySelector(".madd-quote__option") || result.querySelector(".madd-copy-rates")) return;
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "madd-copy-rates";
+    btn.innerHTML = '<span aria-hidden="true"></span>Copy rates';
+    btn.addEventListener("click", function () {
+      copy(build(result)).then(function () {
+        btn.classList.add("is-done");
+        btn.lastChild.textContent = "Copied — paste anywhere";
+        setTimeout(function () { btn.classList.remove("is-done"); btn.lastChild.textContent = "Copy rates"; }, 2500);
+      }, function () { window.prompt("Copy the rates:", build(result)); });
+    });
+    var book = result.querySelector(".madd-quote__book");
+    var row = document.createElement("div");
+    row.className = "madd-quote-actions";
+    if (book) { book.parentNode.insertBefore(row, book); row.appendChild(book); }
+    else result.appendChild(row);
+    row.insertBefore(btn, row.firstChild);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".madd-quote__result"), function (result) {
+    new MutationObserver(function () { addButton(result); }).observe(result, { childList: true });
+  });
+})();
