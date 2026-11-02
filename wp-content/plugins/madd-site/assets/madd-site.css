@@ -1786,3 +1786,17 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
 body.single-post .entry-content > h2.wp-block-heading { margin: 34px 0 12px; font-size: 22px; line-height: 1.35; color: var(--madd-navy); }
 body.single-post .entry-content > h3.wp-block-heading { margin: 26px 0 8px; font-size: 18px; color: var(--madd-navy); }
 body.single-post .entry-content > ul.wp-block-list li { margin-bottom: 8px; font-size: 16px; line-height: 1.8; color: #3E4B5B; }
+/* ---------- Articles: cover photos (featured images) ---------- */
+/* photo on the left, title + preview on the right — keeps the 24-article list easy to scan */
+.madd-guide-topic li a.has-img { display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: 18px; row-gap: 6px; align-content: start; padding: 16px 44px 16px 16px; }
+.madd-guide-topic li a.has-img .madd-guide-img { grid-row: 1 / span 2; width: 128px; max-width: none; height: auto; aspect-ratio: 1; margin: 0; border-radius: 12px; object-fit: cover; }
+.madd-guide-topic li a.has-img::after { top: 16px; right: 16px; }
+.madd-guide-topic li a.has-img span { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 600px) {
+  .madd-guide-topic li a.has-img { grid-template-columns: 88px minmax(0, 1fr); column-gap: 14px; row-gap: 4px; padding: 14px 36px 14px 14px; }
+  .madd-guide-topic li a.has-img .madd-guide-img { width: 88px; }
+  .madd-guide-topic li a.has-img::after { top: 14px; right: 14px; }
+  .madd-guide-topic li a.has-img span { -webkit-line-clamp: 2; }
+}
+/* single article: Kadence shows the featured image above the title — keep it a tidy banner */
+body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail img { aspect-ratio: 16 / 9; object-fit: cover; border-radius: 18px; }

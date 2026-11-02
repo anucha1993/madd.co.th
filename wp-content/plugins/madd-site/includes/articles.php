@@ -80,7 +80,8 @@ function madd_guide_render()
         }
         $out .= '<section class="madd-guide-topic '.$icon.'"><div class="madd-guide-head"><div><h2>'.esc_html($heading).'</h2><p>'.count($posts).' articles</p></div></div><ul>';
         foreach ($posts as $p) {
-            $out .= '<li><a href="'.esc_url(get_permalink($p)).'"><strong>'.esc_html(get_the_title($p)).'</strong><span>'.esc_html(get_the_excerpt($p)).'</span></a></li>';
+            $img = get_the_post_thumbnail($p, 'medium_large', ['class' => 'madd-guide-img', 'loading' => 'lazy', 'alt' => '']);
+            $out .= '<li><a href="'.esc_url(get_permalink($p)).'"'.($img ? ' class="has-img"' : '').'>'.$img.'<strong>'.esc_html(get_the_title($p)).'</strong><span>'.esc_html(get_the_excerpt($p)).'</span></a></li>';
         }
         $out .= '</ul></section>';
     }
