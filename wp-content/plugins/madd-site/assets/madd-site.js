@@ -247,6 +247,9 @@
             form.reset();
             form.innerHTML = '<div class="madd-wr-thanks"><strong>Thank you for your review!</strong>' +
               "<span>It will appear on our website after our team has checked it.</span></div>";
+            // the tall form just became a short message — bring it back into view (it would be above the screen)
+            open.hidden = true;
+            form.scrollIntoView({ behavior: "smooth", block: "center" });
             return;
           }
           var fields = (res.d && res.d.data && res.d.data.fields) || {};
