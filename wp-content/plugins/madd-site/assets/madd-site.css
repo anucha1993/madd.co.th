@@ -1775,3 +1775,7 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
 .madd-copy-rates.is-done { border-color: #12A150 !important; background: #EAF7EF !important; color: #0F7A3A !important; }
 .madd-copy-rates.is-done span { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F7A3A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
 @media (max-width: 420px) { .madd-quote-actions > * { flex: 1 1 100%; justify-content: center; } }
+/* SAGAWA (Japan, from MADD's rate card) in Check Rate results */
+.madd-quote .madd-quote__carrier--sagawa { background: #0B4EA2; }
+.madd-quote .madd-quote__carrier--sagawa b { color: #fff; letter-spacing: .02em; }
+.madd-quote-card .madd-quote__carrier--sagawa b { font-size: 10.5px; letter-spacing: 0; }

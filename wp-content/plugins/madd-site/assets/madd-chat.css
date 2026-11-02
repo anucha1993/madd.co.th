@@ -73,3 +73,4 @@
   html.madd-chat-lock, html.madd-chat-lock body { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) { .madd-chat-panel { animation: none; } .madd-chat-msg.is-typing span { animation: none; } }
+.madd-chat-carrier.is-sagawa { background: #0B4EA2; color: #fff; font-size: 9.5px; }
