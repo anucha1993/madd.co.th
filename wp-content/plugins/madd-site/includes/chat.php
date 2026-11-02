@@ -121,7 +121,14 @@ function madd_chat_send(WP_REST_Request $req)
     // last failure kept for Settings › MADD Chat (the visitor only sees a generic message)
     $fail = is_wp_error($res) ? $res->get_error_message() : ((int) wp_remote_retrieve_response_code($res) !== 200 ? 'HTTP '.wp_remote_retrieve_response_code($res).' '.mb_substr(wp_remote_retrieve_body($res), 0, 300) : '');
     if ($fail) {
-        update_option('madd_chat_last_error', ['time' => current_time('mysql'), 'host' => wp_parse_url(home_url(), PHP_URL_HOST), 'seconds' => round(microtime(true) - $started, 1), 'error' => $fail], false);
+        // which address this server resolves the API host to (a wrong DNS / hosts entry looks like a timeout)
+        $apiHost = (string) wp_parse_url($url, PHP_URL_HOST);
+        $dns = function_exists('dns_get_record') ? (@dns_get_record($apiHost, DNS_A + DNS_AAAA) ?: []) : [];
+        update_option('madd_chat_last_error', [
+            'time' => current_time('mysql'), 'host' => wp_parse_url(home_url(), PHP_URL_HOST), 'seconds' => round(microtime(true) - $started, 1), 'error' => $fail,
+            'resolves_to' => implode(', ', array_filter(array_merge((array) @gethostbynamel($apiHost), array_map(fn ($r) => $r['ipv6'] ?? $r['ip'] ?? '', $dns)))),
+            'server_ip' => $_SERVER['SERVER_ADDR'] ?? '',
+        ], false);
     }
     if (is_wp_error($res)) {
         return new WP_Error('unreachable', 'Sorry, the assistant is not available right now.', ['status' => 502, 'admin' => current_user_can('manage_options') ? $res->get_error_message() : null]);
