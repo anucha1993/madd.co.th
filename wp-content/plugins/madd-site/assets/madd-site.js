@@ -572,3 +572,11 @@
     });
   });
 })();
+// Check Rate card: quotes list scrolls inside the card — drop the bottom fade once scrolled to the end.
+(function () {
+  document.addEventListener("scroll", function (e) {
+    var el = e.target;
+    if (!el.classList || !el.classList.contains("madd-quote__options")) return;
+    el.classList.toggle("is-end", el.scrollTop + el.clientHeight >= el.scrollHeight - 4);
+  }, true);
+})();
