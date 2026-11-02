@@ -108,11 +108,21 @@ function madd_chat_send(WP_REST_Request $req)
     $s = Madd_Rate_Quote::settings();
     $url = preg_replace('#/public(/v1)?(/.*)?$#', '', untrailingslashit($s['api_url'])).'/public/v1/ai-chat';
     $ip = filter_var($_SERVER['REMOTE_ADDR'] ?? '', FILTER_VALIDATE_IP) ?: '';
-    $res = wp_remote_post($url, [
+    $args = [
         'timeout' => 60,
         'headers' => ['Authorization' => 'Bearer '.$s['api_key'], 'Accept' => 'application/json', 'Content-Type' => 'application/json', 'X-End-User-IP' => $ip],
         'body' => wp_json_encode(['messages' => $messages, 'knowledge' => madd_chat_knowledge()]),
-    ]);
+    ];
+    $started = microtime(true);
+    $res = wp_remote_post($url, $args);
+    if (is_wp_error($res)) { // one retry on a network error
+        $res = wp_remote_post($url, $args);
+    }
+    // last failure kept for Settings › MADD Chat (the visitor only sees a generic message)
+    $fail = is_wp_error($res) ? $res->get_error_message() : ((int) wp_remote_retrieve_response_code($res) !== 200 ? 'HTTP '.wp_remote_retrieve_response_code($res).' '.mb_substr(wp_remote_retrieve_body($res), 0, 300) : '');
+    if ($fail) {
+        update_option('madd_chat_last_error', ['time' => current_time('mysql'), 'host' => wp_parse_url(home_url(), PHP_URL_HOST), 'seconds' => round(microtime(true) - $started, 1), 'error' => $fail], false);
+    }
     if (is_wp_error($res)) {
         return new WP_Error('unreachable', 'Sorry, the assistant is not available right now.', ['status' => 502, 'admin' => current_user_can('manage_options') ? $res->get_error_message() : null]);
     }
@@ -149,6 +159,9 @@ add_action('admin_menu', function () {
             <form method="post"><?php wp_nonce_field('madd_chat'); ?>
                 <p><label><input type="checkbox" name="enabled" value="1" <?php checked(get_option('madd_chat_enabled')); ?>> เปิดใช้ AI Chat บนเว็บ</label></p>
                 <p class="description">เนื้อหาที่ AI ใช้ตอบ: <?php echo esc_html(number_format(mb_strlen(madd_chat_knowledge()))); ?> ตัวอักษร จากทุกหน้า / บทความที่เผยแพร่ (สร้างใหม่อัตโนมัติเมื่อแก้หน้า)</p>
+                <?php $last = get_option('madd_chat_last_error'); if ($last) : ?>
+                    <p class="description">ข้อผิดพลาดล่าสุด: <?php echo esc_html($last['time'].' · '.$last['host'].' · '.$last['seconds'].'s · '.$last['error']); ?></p>
+                <?php endif; ?>
                 <?php submit_button('บันทึก', 'primary', 'madd_chat_save'); ?>
             </form>
         </div>
