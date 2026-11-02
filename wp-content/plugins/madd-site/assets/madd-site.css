@@ -1804,13 +1804,13 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
 .madd-wr-form { scroll-margin-top: 96px; }
 
 /* ---------- Hero: "Send a parcel — domestic & international — UPS & DHL service" block ---------- */
-.madd-hero p.madd-sendbox { display: inline-flex; flex-direction: column; align-items: center; margin: 0 0 26px; padding: 16px 30px 18px; background: var(--madd-yellow); border-radius: 14px; color: var(--madd-navy); text-align: center; line-height: 1.15; box-shadow: 0 18px 40px -22px rgba(0,0,0,.6); }
+.madd-hero p.madd-sendbox { display: flex; flex-direction: column; align-items: center; margin: 0 0 26px; padding: 16px 30px 18px; background: var(--madd-yellow); border-radius: 14px; color: var(--madd-navy); text-align: center; line-height: 1.15; box-shadow: 0 18px 40px -22px rgba(0,0,0,.6); }
 .madd-sendbox span { display: block; font-weight: 800; }
-.madd-sendbox-1 { font-size: 22px; letter-spacing: .02em; }
-.madd-sendbox-2 { margin-top: 4px; padding-bottom: 8px; font-size: 32px; border-bottom: 3px solid var(--madd-navy); }
-.madd-sendbox-3 { margin-top: 8px; font-size: 32px; letter-spacing: .01em; }
+.madd-sendbox-1 { font-size: 24px; letter-spacing: .02em; }
+.madd-sendbox-2 { margin-top: 4px; padding-bottom: 8px; font-size: 38px; border-bottom: 3px solid var(--madd-navy); }
+.madd-sendbox-3 { margin-top: 8px; font-size: 38px; letter-spacing: .01em; }
 @media (max-width: 600px) {
-  .madd-hero p.madd-sendbox { display: flex; margin-bottom: 20px; padding: 14px 16px 16px; }
+  .madd-hero p.madd-sendbox { margin-bottom: 20px; padding: 14px 16px 16px; }
   .madd-sendbox-1 { font-size: 17px; }
   .madd-sendbox-2, .madd-sendbox-3 { font-size: 25px; }
 }
