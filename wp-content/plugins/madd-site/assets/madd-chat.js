@@ -116,6 +116,20 @@
 
   var save = function () { try { sessionStorage.setItem(STORE, JSON.stringify(history.slice(-20))); } catch (e) {} };
 
+  // ---------- site digest for the AI (cached for the browser session)
+  var kPromise = null;
+  var knowledge = function () {
+    if (!kPromise) {
+      var cached = null;
+      try { cached = sessionStorage.getItem("madd-chat-k"); } catch (e) {}
+      kPromise = cached ? Promise.resolve(cached) : fetch(cfg.knowledgeUrl, { credentials: "same-origin" })
+        .then(function (r) { if (!r.ok) throw new Error("knowledge " + r.status); return r.json(); })
+        .then(function (j) { try { sessionStorage.setItem("madd-chat-k", j.knowledge); } catch (e) {} return j.knowledge; });
+      kPromise.catch(function () { kPromise = null; });
+    }
+    return kPromise;
+  };
+
   // ---------- send
   var ask = function (text) {
     text = text.trim();
@@ -130,18 +144,33 @@
     typing.innerHTML = "<span></span><span></span><span></span>";
     log.appendChild(typing);
     log.scrollTop = log.scrollHeight;
-    fetch(cfg.endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "same-origin",
-      body: JSON.stringify({ messages: history.map(function (m) { return { role: m.role, content: m.content }; }) }),
-    })
-      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+    var messages = history.map(function (m) { return { role: m.role, content: m.content }; });
+    var viaSite = function () {
+      return fetch(cfg.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ messages: messages }),
+      }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; }); });
+    };
+    // Direct to MADD first (like Check Rate), so it doesn't depend on this server reaching MADD;
+    // the WordPress route is the fallback when the direct call fails (not when it says "too many").
+    var direct = cfg.apiUrl
+      ? knowledge().then(function (k) {
+          return fetch(cfg.apiUrl + "/public/v1/web/ai-chat", { method: "POST", credentials: "omit", body: new URLSearchParams({ messages: JSON.stringify(messages), knowledge: k }) });
+        }).then(function (r) {
+          if (!r.ok && r.status !== 429) throw new Error("direct " + r.status);
+          return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; });
+        })
+      : Promise.reject(new Error("no direct"));
+    direct
+      .catch(viaSite)
       .then(function (r) {
         if (r.ok && r.j && r.j.reply !== undefined) {
           history.push({ role: "assistant", content: r.j.reply || "…", quotes: r.j.quotes || [], tracking: r.j.tracking || [] });
         } else {
-          history.push({ role: "assistant", content: (r.j && r.j.message) || "Sorry, I can't answer right now. Please try again or chat with our team on LINE.", error: true });
+          var msg = r.status === 429 ? "You are sending messages very quickly — please wait a moment and try again." : (r.j && r.j.message) || "Sorry, I can't answer right now. Please try again or chat with our team on LINE.";
+          history.push({ role: "assistant", content: msg, error: true });
         }
       })
       .catch(function () {

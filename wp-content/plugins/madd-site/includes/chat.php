@@ -2,10 +2,11 @@
 /**
  * AI chat assistant (floating "Ask MADD" button on every page).
  *
- * - The browser posts the conversation to REST madd/v1/chat. WordPress adds a plain-text digest of the
- *   site's own pages ("knowledge") and forwards it server-to-server to MADD
- *   POST {API URL}/public/v1/ai-chat with the API key of MADD Rate Quote — the key never reaches the page.
- *   MADD runs the AI (the key's OpenAI settings) and the live rate / tracking lookups.
+ * - The browser fetches a plain-text digest of the site's pages (REST madd/v1/chat-knowledge) and posts
+ *   it with the conversation straight to MADD POST {API URL}/public/v1/web/ai-chat (the site's Origin is
+ *   registered on its API key — no key in the page), like MADD Rate Quote. If that fails, it falls back
+ *   to REST madd/v1/chat: WordPress forwards server-to-server to POST {API URL}/public/v1/ai-chat with the
+ *   API key of MADD Rate Quote. MADD runs the AI and the live rate / tracking lookups.
  * - Knowledge: every published page, the FAQ and the Shipping Guide articles, as text with their URLs;
  *   cached, rebuilt whenever a page or article is saved.
  * - On/off: option "madd_chat_enabled" (Settings › MADD Chat), or MADD_CHAT_ENABLED in wp-config.php
@@ -81,6 +82,21 @@ add_action('save_post', function ($id, $post) {
 // ---------------------------------------------------------------- REST proxy
 
 add_action('rest_api_init', function () {
+    // The site digest for the browser, which sends it to MADD with the question (direct route).
+    register_rest_route('madd/v1', '/chat-knowledge', [
+        'methods' => 'GET',
+        'permission_callback' => '__return_true',
+        'callback' => function () {
+            if (! madd_chat_enabled()) {
+                return new WP_Error('chat_off', 'Chat is not available.', ['status' => 503]);
+            }
+            $k = madd_chat_knowledge();
+            $res = rest_ensure_response(['v' => md5($k), 'knowledge' => $k]);
+            $res->header('Cache-Control', 'public, max-age=3600');
+
+            return $res;
+        },
+    ]);
     register_rest_route('madd/v1', '/chat', [
         'methods' => 'POST',
         'permission_callback' => '__return_true',
@@ -187,6 +203,9 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('madd-chat', MADD_SITE_URL.'assets/madd-chat.js', [], $v, true);
     wp_localize_script('madd-chat', 'MaddChat', [
         'endpoint' => esc_url_raw(rest_url('madd/v1/chat')),
+        'knowledgeUrl' => esc_url_raw(rest_url('madd/v1/chat-knowledge')),
+        // Public base URL (no key): the browser asks MADD directly first, like MADD Rate Quote.
+        'apiUrl' => esc_url_raw(preg_replace('#/public(/v1)?(/.*)?$#', '', untrailingslashit(Madd_Rate_Quote::settings()['api_url']))),
         'rateUrl' => get_permalink((int) get_page_by_path('hot-promotion')?->ID) ?: home_url('/'),
         'trackUrl' => get_permalink((int) get_page_by_path('check-status')?->ID) ?: home_url('/'),
         'line' => 'https://line.me/ti/p/~madd.co.th',
