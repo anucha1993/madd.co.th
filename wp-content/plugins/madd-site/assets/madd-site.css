@@ -1800,3 +1800,5 @@ body.single-post .entry-content > ul.wp-block-list li { margin-bottom: 8px; font
 }
 /* single article: Kadence shows the featured image above the title — keep it a tidy banner */
 body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail img { aspect-ratio: 16 / 9; object-fit: cover; border-radius: 18px; }
+/* waybill QR → review form: leave room for the sticky header */
+.madd-wr-form { scroll-margin-top: 96px; }

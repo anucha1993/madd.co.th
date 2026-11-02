@@ -24,6 +24,10 @@ add_action('template_redirect', function () {
         return;
     }
     $url = is_numeric($to) ? get_permalink((int) $to) : $to;
+    // keep the query string (e.g. the waybill's tracking QR: /tracking/?tn=… → Check Status ?tn=…)
+    if ($url && ! empty($_GET) && ! wp_parse_url($url, PHP_URL_QUERY)) {
+        $url = add_query_arg(array_map('rawurlencode', wp_unslash($_GET)), $url);
+    }
     // never redirect a URL to itself (e.g. once pretty permalinks give an article its old slug back)
     $target = '/'.trim(rawurldecode((string) wp_parse_url($url, PHP_URL_PATH)), '/').'/';
     if ($url && ($target !== $path || wp_parse_url($url, PHP_URL_QUERY))) {

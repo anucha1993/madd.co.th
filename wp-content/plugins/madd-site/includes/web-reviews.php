@@ -8,6 +8,8 @@
  * - Spam protection without a third-party captcha: hidden honeypot field, minimum fill time, and a per-IP limit.
  * - Stored per review: name (title), review text (content), rating, shipped-to country, service, and an optional
  *   e-mail that is never shown.
+ * - madd.co.th/review/?tn={tracking}&carrier={carrier} — the "Scan to review MADD" QR on the madd-admin Shipper's Copy —
+ *   opens the home page with the form open, the service chosen and the tracking number kept with the review.
  */
 
 if (! defined('ABSPATH')) {
@@ -51,6 +53,20 @@ add_action('init', function () {
     ]);
 });
 
+// QR link from the waybill → home page reviews section, form opened by madd-site.js (#write-review)
+add_action('template_redirect', function () {
+    $path = trim((string) wp_parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
+    if ($path !== 'review') {
+        return;
+    }
+    $args = array_filter([
+        'tn' => preg_replace('/[^A-Za-z0-9]/', '', (string) wp_unslash($_GET['tn'] ?? '')),
+        'carrier' => preg_replace('/[^A-Za-z]/', '', (string) wp_unslash($_GET['carrier'] ?? '')),
+    ]);
+    wp_safe_redirect(add_query_arg($args, home_url('/')).'#write-review', 302);
+    exit;
+}, 0);
+
 // ---------------------------------------------------------------- submit
 
 add_action('rest_api_init', function () {
@@ -80,6 +96,7 @@ function madd_wr_submit(WP_REST_Request $req)
     $rating = (int) ($p['rating'] ?? 0);
     $text = trim(sanitize_textarea_field($p['review'] ?? ''));
     $email = sanitize_email($p['email'] ?? '');
+    $tracking = mb_substr(preg_replace('/[^A-Za-z0-9]/', '', (string) ($p['tn'] ?? '')), 0, 40);
     $errors = [];
     if (mb_strlen($name) < 2) {
         $errors['name'] = 'Please enter your name.';
@@ -110,6 +127,7 @@ function madd_wr_submit(WP_REST_Request $req)
             'madd_country' => mb_substr($country, 0, 60),
             'madd_service' => $service,
             'madd_email' => $email,
+            'madd_tracking' => $tracking,
         ],
     ], true);
     if (is_wp_error($id)) {
@@ -118,7 +136,7 @@ function madd_wr_submit(WP_REST_Request $req)
     set_transient('madd_wr_'.$ip, $count + 1, DAY_IN_SECONDS);
 
     wp_mail(get_option('admin_email'), 'New website review ('.$rating.'★) from '.$name,
-        $name.($country ? ' — '.$country : '')."\n".str_repeat('★', $rating)."\n\n".$text."\n\n"
+        $name.($country ? ' — '.$country : '')."\n".str_repeat('★', $rating)."\n".($tracking ? 'Tracking no. '.$tracking." (from the waybill QR)\n" : '')."\n".$text."\n\n"
         .'Approve it here: '.admin_url('post.php?post='.$id.'&action=edit'));
 
     return ['ok' => true];
@@ -140,7 +158,7 @@ function madd_wr_render($attrs)
     $uid = 'madd-wr-'.wp_unique_id();
 
     ob_start(); ?>
-    <div class="madd-wr" data-endpoint="<?php echo esc_url(rest_url('madd/v1/review')); ?>">
+    <div class="madd-wr" id="write-review" data-endpoint="<?php echo esc_url(rest_url('madd/v1/review')); ?>">
         <div class="madd-wr-bar">
             <div class="madd-wr-score">
                 <?php if ($count) { ?>
@@ -184,6 +202,7 @@ function madd_wr_render($attrs)
                 <span>I allow MADD to publish my name, country and review on www.madd.co.th. <i>*</i></span></label>
             <input type="text" name="website" class="madd-wr-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="t" value="">
+            <input type="hidden" name="tn" value="">
             <div class="madd-wr-actions">
                 <button type="submit" class="madd-wr-submit">Send my review</button>
                 <p class="madd-wr-msg" role="status" aria-live="polite"></p>
@@ -230,6 +249,9 @@ add_action('manage_'.MADD_WR_TYPE.'_posts_custom_column', function ($col, $id) {
         echo esc_html(wp_trim_words(get_post_field('post_content', $id), 30));
     } elseif ($col === 'madd_country') {
         echo esc_html(trim(get_post_meta($id, 'madd_country', true).' · '.get_post_meta($id, 'madd_service', true), ' ·'));
+        if ($tn = get_post_meta($id, 'madd_tracking', true)) {
+            echo '<br><small title="Sent from the QR code on the waybill">Tracking '.esc_html($tn).'</small>';
+        }
     }
 }, 10, 2);
 
@@ -253,6 +275,7 @@ add_action('add_meta_boxes_'.MADD_WR_TYPE, function () {
         <p><label>Shipped to<br><input type="text" name="madd_country" value="<?php echo $v('madd_country'); ?>" class="widefat"></label></p>
         <p><label>Service<br><input type="text" name="madd_service" value="<?php echo $v('madd_service'); ?>" class="widefat"></label></p>
         <p><label>E-mail (private)<br><input type="email" name="madd_email" value="<?php echo $v('madd_email'); ?>" class="widefat"></label></p>
+        <?php if ($v('madd_tracking')) { ?><p>Tracking no. (from the waybill QR)<br><strong><?php echo $v('madd_tracking'); ?></strong></p><?php } ?>
         <p class="description">Click <b>Publish</b> to show this review on the website.</p>
         <?php
     }, MADD_WR_TYPE, 'side', 'high');

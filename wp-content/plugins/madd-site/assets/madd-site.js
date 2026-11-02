@@ -219,9 +219,20 @@
       if (show) {
         opened = opened || Math.floor(Date.now() / 1000);
         form.elements.t.value = opened;
-        form.querySelector("input[name=rating]").focus();
+        form.querySelector("input[name=rating]").focus({ preventScroll: true });
       }
     });
+    // From the "Scan to review MADD" QR on the waybill (/review/?tn=…&carrier=DHL → /?tn=…&carrier=DHL#write-review)
+    if (location.hash === "#write-review") {
+      var q = new URLSearchParams(location.search);
+      var carrier = { DHL: "DHL Express", UPS: "UPS", SAGAWA: "SAGAWA Express" }[(q.get("carrier") || "").toUpperCase()];
+      if (form.elements.tn) form.elements.tn.value = q.get("tn") || "";
+      if (carrier) form.elements.service.value = carrier;
+      open.click();
+      // lazy images above load as the page scrolls past them and push the form down — scroll again while it settles
+      var go = function () { form.scrollIntoView({ block: "start" }); };
+      [100, 700, 1500, 2500].forEach(function (ms) { setTimeout(go, ms); });
+    }
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       form.querySelectorAll(".is-error").forEach(function (f) { f.classList.remove("is-error"); f.removeAttribute("data-error"); });
