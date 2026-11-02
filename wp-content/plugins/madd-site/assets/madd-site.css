@@ -1778,4 +1778,8 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
 /* SAGAWA (Japan, from MADD's rate card) in Check Rate results */
 .madd-quote .madd-quote__carrier--sagawa { background: #0B4EA2; }
 .madd-quote .madd-quote__carrier--sagawa b { color: #fff; letter-spacing: .02em; }
-.madd-quote-card .madd-quote__carrier--sagawa b { font-size: 10.5px; letter-spacing: 0; }
+.madd-quote-card .madd-quote__carrier--sagawa b { font-size: 10.5px; letter-spacing: 0; }/* carrier badges never wrap (SAGAWA is the longest name) */
+.madd-quote .madd-quote__carrier { padding: 0 4px; overflow: hidden; }
+.madd-quote .madd-quote__carrier b { white-space: nowrap; }
+.madd-quote .madd-quote__carrier--sagawa b { font-size: 12px; letter-spacing: 0; }
+.madd-quote-card .madd-quote .madd-quote__carrier--sagawa b { font-size: 10.5px; }
