@@ -25,7 +25,6 @@
     return out.join("");
   };
   var fmt = function (n) { return Number(n).toLocaleString("en-US", { maximumFractionDigits: 2 }); };
-  var th = /[฀-๿]/;
 
   // ---------- markup
   var root = document.createElement("div");
@@ -38,7 +37,7 @@
     '<button type="button" class="madd-chat-reset" title="New chat" aria-label="New chat"></button><button type="button" class="madd-chat-close" aria-label="Close chat"></button></header>' +
     '<div class="madd-chat-log" aria-live="polite"></div>' +
     '<div class="madd-chat-chips"></div>' +
-    '<form class="madd-chat-form"><textarea rows="1" maxlength="1500" placeholder="Ask anything… / ถามได้เลย" aria-label="Your message"></textarea>' +
+    '<form class="madd-chat-form"><textarea rows="1" maxlength="1500" placeholder="Ask anything…" aria-label="Your message"></textarea>' +
     '<button type="submit" aria-label="Send"></button></form>' +
     '<p class="madd-chat-foot">AI assistant — prices are estimates. <a href="' + esc(cfg.line) + '" target="_blank" rel="noopener">Chat with our team on LINE</a></p>' +
     "</section>";
@@ -58,7 +57,7 @@
     "Track my parcel",
     "What items can't I send?",
     "Where are your branches?",
-    "ส่งเสื้อผ้า 5 กิโลไปอเมริกาเท่าไหร่",
+    "How much is 5 kg of clothes to the USA?",
   ];
 
   // ---------- rendering
@@ -94,7 +93,7 @@
   var render = function () {
     log.innerHTML = "";
     if (!history.length) {
-      bubble({ role: "assistant", content: "Hi! I'm the MADD assistant 👋\nI can check **shipping rates**, **track a parcel** (UPS / DHL) or answer questions about shipping from Thailand. สอบถามเป็นภาษาไทยได้เลยครับ" });
+      bubble({ role: "assistant", content: "Hi! I'm the MADD assistant 👋\nI can check **shipping rates**, **track a parcel** (UPS / DHL) or answer questions about shipping from Thailand." });
     }
     history.forEach(bubble);
     chips.hidden = history.length > 0;
@@ -142,7 +141,7 @@
         if (r.ok && r.j && r.j.reply !== undefined) {
           history.push({ role: "assistant", content: r.j.reply || "…", quotes: r.j.quotes || [], tracking: r.j.tracking || [] });
         } else {
-          history.push({ role: "assistant", content: (r.j && r.j.message) || (th.test(text) ? "ขออภัย ระบบตอบไม่ได้ในขณะนี้ กรุณาลองใหม่ หรือติดต่อทีมงานทาง LINE" : "Sorry, I can't answer right now. Please try again or chat with our team on LINE."), error: true });
+          history.push({ role: "assistant", content: (r.j && r.j.message) || "Sorry, I can't answer right now. Please try again or chat with our team on LINE.", error: true });
         }
       })
       .catch(function () {
