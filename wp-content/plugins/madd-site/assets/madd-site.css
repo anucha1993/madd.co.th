@@ -1820,3 +1820,7 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
   .madd-hero .madd-sendbox-1 { font-size: .63em; }
   .madd-hero .madd-sendbox-2, .madd-hero .madd-sendbox-3 { font-size: 1em; }
 }
+
+/* hero: the "compare live prices" line sits above the Check shipping rate card */
+.madd-hero p.madd-quote-intro { margin: 0 0 14px; padding-left: 14px; border-left: 3px solid var(--madd-yellow); font-size: 15.5px; line-height: 1.6; color: rgba(255,255,255,.88); }
+@media (max-width: 900px) { .madd-hero p.madd-quote-intro { margin-top: 8px; font-size: 15px; } }
