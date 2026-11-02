@@ -1782,4 +1782,7 @@ body.single-post .post-navigation-sub, body.single-post .entry-related .entry-me
 .madd-quote .madd-quote__carrier { padding: 0 4px; overflow: hidden; }
 .madd-quote .madd-quote__carrier b { white-space: nowrap; }
 .madd-quote .madd-quote__carrier--sagawa b { font-size: 12px; letter-spacing: 0; }
-.madd-quote-card .madd-quote .madd-quote__carrier--sagawa b { font-size: 10.5px; }
+.madd-quote-card .madd-quote .madd-quote__carrier--sagawa b { font-size: 10.5px; }.madd-guide-topic.is-grow .madd-guide-head::before { background-image: url("why/partnership.svg"); background-size: 64px; }
+body.single-post .entry-content > h2.wp-block-heading { margin: 34px 0 12px; font-size: 22px; line-height: 1.35; color: var(--madd-navy); }
+body.single-post .entry-content > h3.wp-block-heading { margin: 26px 0 8px; font-size: 18px; color: var(--madd-navy); }
+body.single-post .entry-content > ul.wp-block-list li { margin-bottom: 8px; font-size: 16px; line-height: 1.8; color: #3E4B5B; }

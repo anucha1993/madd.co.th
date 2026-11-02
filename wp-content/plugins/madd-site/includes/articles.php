@@ -47,6 +47,7 @@ function madd_guide_topics()
         'what-can-i-send' => ['What can I send?', 'is-items'],
         'cost-and-customs' => ['Shipping cost & customs', 'is-cost'],
         'how-to-ship' => ['How to ship', 'is-steps'],
+        'grow-your-business' => ['Grow your online business', 'is-grow'],
     ];
 }
 
@@ -66,8 +67,8 @@ add_action('init', fn () => add_shortcode('madd_shipping_guide', 'madd_guide_ren
 
 function madd_guide_render()
 {
-    $out = '<div class="madd-guide"><div class="madd-pro-find madd-guide-find"><label><span class="screen-reader-text">Search the shipping guide</span>'
-        .'<input type="search" placeholder="Search the guide, e.g. food, tax, dimensional weight…" autocomplete="off"></label></div>';
+    $out = '<div class="madd-guide"><div class="madd-pro-find madd-guide-find"><label><span class="screen-reader-text">Search articles</span>'
+        .'<input type="search" placeholder="Search articles, e.g. customs, packing, e-commerce…" autocomplete="off"></label></div>';
     foreach (madd_guide_topics() as $slug => [$heading, $icon]) {
         $term = get_term_by('slug', $slug, 'category');
         if (! $term) {
@@ -131,7 +132,7 @@ add_filter('the_content', function ($content) {
         }
     }
 
-    return '<p class="madd-art-crumb"><a href="'.esc_url(madd_guide_url()).'">← Shipping Guide</a>'.($topic ? ' <span>/</span> '.esc_html($topic) : '').'</p>'
+    return '<p class="madd-art-crumb"><a href="'.esc_url(madd_guide_url()).'">← Articles</a>'.($topic ? ' <span>/</span> '.esc_html($topic) : '').'</p>'
         .$content
         .($links ? '<div class="madd-art-related"><p class="madd-art-related-title">Related pages</p><ul>'.$links.'</ul></div>' : '')
         .'<div class="madd-art-cta"><div><p class="madd-art-cta-title">Ready to ship from Thailand?</p><p>Check your shipping rate online, or ask our team on LINE.</p></div>'
