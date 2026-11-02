@@ -1814,3 +1814,9 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
   .madd-sendbox-1 { font-size: 17px; }
   .madd-sendbox-2, .madd-sendbox-3 { font-size: 25px; }
 }
+@media (min-width: 901px) {
+  /* same width as the heading's first line ("International Shipping from" ≈ 13.2em of the h1 size) */
+  .madd-hero p.madd-sendbox { font-size: clamp(28px, 2.7vw, 38px); width: 13.2em; max-width: 100%; box-sizing: border-box; padding: .4em .8em .45em; }
+  .madd-hero .madd-sendbox-1 { font-size: .63em; }
+  .madd-hero .madd-sendbox-2, .madd-hero .madd-sendbox-3 { font-size: 1em; }
+}
