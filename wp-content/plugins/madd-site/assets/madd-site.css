@@ -1824,9 +1824,25 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
 /* hero: the "compare live prices" line, inside the Check shipping rate card above its title */
 .madd-quote-card p.madd-quote-intro { margin: 0 0 12px !important; padding-bottom: 12px; border-bottom: 1px solid var(--madd-line); font-size: 13.5px; line-height: 1.55; color: var(--madd-muted); }
 
-/* ---------- Send a parcel section: MADD branch + packing photo above the UPS / DHL cards ---------- */
-.madd-carriers figure.madd-carriers-photo { max-width: 1080px; margin: 18px auto 32px !important; border-radius: 22px; overflow: hidden; border-bottom: 5px solid var(--madd-yellow); box-shadow: 0 30px 60px -36px rgba(39,52,68,.55); }
-.madd-carriers figure.madd-carriers-photo img { display: block; width: 100%; height: auto; }
+/* ---------- Send a parcel section: MADD branch + packing photo, the UPS / DHL cards overlap its bottom edge ---------- */
+.madd-carriers { padding-top: 72px; }
+.madd-carriers figure.madd-carriers-photo { position: relative; max-width: 1180px; margin: 0 auto !important; border-radius: 26px; overflow: hidden; box-shadow: 0 34px 70px -40px rgba(39,52,68,.6); }
+.madd-carriers figure.madd-carriers-photo img { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 680; object-fit: cover; object-position: center 35%; }
+.madd-carriers figure.madd-carriers-photo::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(to bottom, rgba(39,52,68,0), rgba(39,52,68,.82)); pointer-events: none; }
+.madd-carriers figure.madd-carriers-photo figcaption { position: absolute; left: 40px; top: 32px; z-index: 1; display: flex; align-items: center; gap: 12px; margin: 0; padding: 8px 18px 8px 8px; background: rgba(255,255,255,.94); border-radius: 40px; font-size: 14px; font-weight: 600; color: var(--madd-navy); box-shadow: 0 10px 26px -12px rgba(0,0,0,.5); }
+.madd-carriers figure.madd-carriers-photo figcaption strong { padding: 6px 12px; background: var(--madd-yellow); border-radius: 30px; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.madd-carriers .madd-carriers-grid { position: relative; z-index: 2; margin-top: -110px !important; }
+.madd-carriers .madd-carrier { box-shadow: 0 24px 50px -30px rgba(39,52,68,.45); }
+@media (max-width: 900px) {
+  .madd-carriers .madd-carriers-grid { margin-top: -60px !important; padding: 0 16px; }
+  .madd-carriers figure.madd-carriers-photo figcaption { left: 20px; top: 18px; }
+}
 @media (max-width: 600px) {
-  .madd-carriers figure.madd-carriers-photo { margin: 12px auto 22px !important; border-radius: 14px; border-bottom-width: 4px; }
+  .madd-carriers { padding-top: 48px; }
+  .madd-carriers figure.madd-carriers-photo { border-radius: 16px; }
+  .madd-carriers figure.madd-carriers-photo img { aspect-ratio: 16 / 10; object-position: center; }
+  /* phones: only the yellow "Send a parcel" tag, so the photo stays visible */
+  .madd-carriers figure.madd-carriers-photo figcaption { left: 12px; top: 12px; padding: 0; background: none; box-shadow: none; font-size: 0; }
+  .madd-carriers figure.madd-carriers-photo figcaption strong { font-size: 10.5px; padding: 6px 11px; box-shadow: 0 6px 16px -6px rgba(0,0,0,.5); }
+  .madd-carriers .madd-carriers-grid { margin-top: -40px !important; padding: 0 10px; }
 }
