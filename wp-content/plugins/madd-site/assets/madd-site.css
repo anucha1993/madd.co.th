@@ -1846,3 +1846,11 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
   .madd-carriers figure.madd-carriers-photo figcaption strong { font-size: 10.5px; padding: 6px 11px; box-shadow: 0 6px 16px -6px rgba(0,0,0,.5); }
   .madd-carriers .madd-carriers-grid { margin-top: -40px !important; padding: 0 10px; }
 }
+
+/* Send a parcel: third carrier card — SAGAWA */
+.madd-carrier.is-sagawa { border-top-color: #0B4EA2; }
+@media (min-width: 1000px) {
+  .madd-carriers .madd-carriers-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1120px; gap: 20px; }
+  .madd-carriers .madd-carrier { padding: 28px 26px 26px; }
+  .madd-carriers .madd-carrier-logo img { height: 84px; }
+}
