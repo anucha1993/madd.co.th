@@ -1854,3 +1854,13 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
   .madd-carriers .madd-carrier { padding: 28px 26px 26px; }
   .madd-carriers .madd-carrier-logo img { height: 84px; }
 }
+
+/* Why choose us: the illustration is a real image block (replaceable in the editor) — same frame as the old background */
+.madd-why-item:has(.madd-why-art)::before { display: none; }
+.madd-why-item figure.madd-why-art { aspect-ratio: 4 / 3; margin: -8px -8px 18px !important; border-radius: 14px; overflow: hidden; background: #FFFBF2; }
+.madd-why-item figure.madd-why-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.madd-why-item figure.madd-why-art img[src$=".svg"] { object-fit: contain; }
+.madd-why-tabs .madd-why-item figure.madd-why-art { grid-column: 1; grid-row: 1 / span 2; align-self: center; margin: 0 !important; }
+@media (max-width: 781px) {
+  .madd-why-tabs .madd-why-item figure.madd-why-art { grid-column: auto; grid-row: auto; width: 100%; max-width: 360px; margin: 0 auto 16px !important; }
+}
