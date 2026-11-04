@@ -1864,3 +1864,7 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
 @media (max-width: 781px) {
   .madd-why-tabs .madd-why-item figure.madd-why-art { grid-column: auto; grid-row: auto; width: 100%; max-width: 360px; margin: 0 auto 16px !important; }
 }
+
+/* hero: "Better Value. Real Savings. All-in-One Service." — larger tagline under the heading */
+.madd-hero p.madd-hero-sub { font-size: 21px; font-weight: 600; line-height: 1.5; color: #E4E9EF; max-width: none; }
+@media (max-width: 600px) { .madd-hero p.madd-hero-sub { font-size: 16px; letter-spacing: -.005em; } }
