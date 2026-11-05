@@ -1849,10 +1849,15 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
 
 /* Send a parcel: third carrier card — SAGAWA */
 .madd-carrier.is-sagawa { border-top-color: #0B4EA2; }
+/* SAGAWA: no logo allowed — the name as text, in a box the size of the UPS / DHL logos */
+.madd-carriers p.madd-carrier-wordmark { display: inline-flex; align-items: center; height: 96px; margin: 0 0 22px; padding: 0 22px; background: #fff; border: 1px solid #DCE6F3; border-radius: 10px; font-size: 26px; font-weight: 700; line-height: 1; white-space: nowrap; color: #0B4EA2; }
+.madd-carriers p.madd-carrier-wordmark strong { margin-right: .28em; font-weight: 900; letter-spacing: .02em; }
+@media (max-width: 600px) { .madd-carriers p.madd-carrier-wordmark { height: 80px; font-size: 23px; } }
 @media (min-width: 1000px) {
   .madd-carriers .madd-carriers-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1120px; gap: 20px; }
   .madd-carriers .madd-carrier { padding: 28px 26px 26px; }
   .madd-carriers .madd-carrier-logo img { height: 84px; }
+  .madd-carriers p.madd-carrier-wordmark { height: 84px; font-size: 24px; padding: 0 20px; }
 }
 
 /* Why choose us: the illustration is a real image block (replaceable in the editor) — same frame as the old background */
