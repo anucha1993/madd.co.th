@@ -48,6 +48,7 @@ function madd_guide_url()
 function madd_guide_topics()
 {
     return [
+        'our-services' => ['Our services', 'is-services'],
         'what-can-i-send' => ['What can I send?', 'is-items'],
         'cost-and-customs' => ['Shipping cost & customs', 'is-cost'],
         'how-to-ship' => ['How to ship', 'is-steps'],

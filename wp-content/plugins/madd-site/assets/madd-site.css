@@ -1873,3 +1873,19 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
 /* hero: "Better Value. Real Savings. All-in-One Service." — larger tagline under the heading */
 .madd-hero p.madd-hero-sub { font-size: 21px; font-weight: 600; line-height: 1.5; color: #E4E9EF; max-width: none; }
 @media (max-width: 600px) { .madd-hero p.madd-hero-sub { font-size: 16px; letter-spacing: -.005em; } }
+
+/* Send a parcel: Standard Terms & Disclaimers under the carrier cards */
+.madd-carriers .madd-carriers-terms { max-width: 1120px; margin: 30px auto 0 !important; padding: 22px 28px; background: #F7F9FC; border: 1px solid var(--madd-line); border-radius: 16px; }
+.madd-carriers-terms > .wp-block-group__inner-container { display: contents; }
+.madd-carriers p.madd-carriers-terms-title { margin: 0 0 10px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--madd-navy); }
+.madd-carriers ul.madd-carriers-terms-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 26px; margin: 0 !important; padding: 0 !important; list-style: none; }
+.madd-carriers-terms-list li { margin: 0; font-size: 13px; line-height: 1.65; color: var(--madd-muted); }
+.madd-carriers-terms-list li strong { display: block; margin-bottom: 2px; color: var(--madd-navy); }
+@media (max-width: 900px) { .madd-carriers ul.madd-carriers-terms-list { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .madd-carriers .madd-carriers-terms { margin: 22px 10px 0 !important; padding: 18px; } }
+
+/* Articles: "Our services" topic icon */
+.madd-guide-topic.is-services .madd-guide-head::before { background-image: url("why/partners.svg"); background-size: 64px; }
+
+/* Our services articles: their cover images carry text ("INTERNATIONAL SHIPMENT") — show the whole image, never crop */
+body.single-post:has(article.single-entry.category-our-services) .article-post-thumbnail img { object-fit: contain; background: #F3F8FC; }
