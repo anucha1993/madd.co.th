@@ -1889,3 +1889,8 @@ body.single-post .post-thumbnail img, body.single-post .article-post-thumbnail i
 
 /* Our services articles: their cover images carry text ("INTERNATIONAL SHIPMENT") — show the whole image, never crop */
 body.single-post:has(article.single-entry.category-our-services) .article-post-thumbnail img { object-fit: contain; background: #F3F8FC; }
+
+/* hero: description paragraph under the "Better Value…" tagline */
+.madd-hero p.madd-hero-sub { margin-bottom: 10px; }
+.madd-hero p.madd-hero-desc { max-width: 560px; margin: 0 0 22px; font-size: 15.5px; line-height: 1.7; color: #C9D2DD; }
+@media (max-width: 600px) { .madd-hero p.madd-hero-desc { font-size: 15px; margin-bottom: 18px; } }
