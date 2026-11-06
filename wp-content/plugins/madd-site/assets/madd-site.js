@@ -1,3 +1,5 @@
+// Thai pages: window.MaddTh (includes/i18n.php) translates the messages below.
+window.maddT = function (s) { return (window.MaddTh && window.MaddTh[s]) || s; };
 /* MADD Site — extras for the rate-check card in the home hero:
    route strip (TH flag → box → destination flag) and a collapsible AI assistant. */
 (function () {
@@ -173,9 +175,9 @@
       if (!s) return;
       var n = function (v) { return Number(v || 0).toLocaleString("en-US"); };
       el.innerHTML =
-        '<span>Visitors today <b>' + n(s.today) + "</b></span>" +
-        '<span>This month <b>' + n(s.month) + "</b></span>" +
-        '<span>Total <b>' + n(s.total) + "</b></span>";
+        '<span>' + maddT("Visitors today") + ' <b>' + n(s.today) + "</b></span>" +
+        '<span>' + maddT("This month") + ' <b>' + n(s.month) + "</b></span>" +
+        '<span>' + maddT("Total") + ' <b>' + n(s.total) + "</b></span>";
       el.hidden = false;
     })
     .catch(function () {});
@@ -215,7 +217,7 @@
       var show = form.hidden;
       form.hidden = !show;
       open.setAttribute("aria-expanded", String(show));
-      open.textContent = show ? "Close" : "Write a review";
+      open.textContent = show ? maddT("Close") : maddT("Write a review");
       if (show) {
         opened = opened || Math.floor(Date.now() / 1000);
         form.elements.t.value = opened;
@@ -239,14 +241,14 @@
       var btn = form.querySelector(".madd-wr-submit");
       btn.disabled = true;
       msg.className = "madd-wr-msg";
-      msg.textContent = "Sending…";
+      msg.textContent = maddT("Sending…");
       fetch(box.getAttribute("data-endpoint"), { method: "POST", body: new FormData(form), credentials: "same-origin" })
         .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
         .then(function (res) {
           if (res.ok) {
             form.reset();
-            form.innerHTML = '<div class="madd-wr-thanks"><strong>Thank you for your review!</strong>' +
-              "<span>It will appear on our website after our team has checked it.</span></div>";
+            form.innerHTML = '<div class="madd-wr-thanks"><strong>' + maddT("Thank you for your review!") + '</strong>' +
+              "<span>" + maddT("It will appear on our website after our team has checked it.") + "</span></div>";
             // the tall form just became a short message — bring it back into view (it would be above the screen)
             open.hidden = true;
             form.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -258,12 +260,12 @@
             if (f) { f.classList.add("is-error"); f.setAttribute("data-error", fields[k]); }
           });
           msg.className = "madd-wr-msg is-error";
-          msg.textContent = (res.d && res.d.message) || "Sorry, something went wrong. Please try again.";
+          msg.textContent = maddT((res.d && res.d.message) || "Sorry, something went wrong. Please try again.");
           btn.disabled = false;
         })
         .catch(function () {
           msg.className = "madd-wr-msg is-error";
-          msg.textContent = "Sorry, something went wrong. Please try again.";
+          msg.textContent = maddT("Sorry, something went wrong. Please try again.");
           btn.disabled = false;
         });
     });
@@ -405,9 +407,9 @@
     out("bill").textContent = kg(bill);
     form.querySelector('[data-box="actual"]').classList.toggle("is-win", w > 0 && w >= dim);
     form.querySelector('[data-box="dim"]').classList.toggle("is-win", dim > 0 && dim > w);
-    out("note").textContent = !bill ? "Dimensional weight = L × W × H ÷ 5,000. The greater of the two weights is generally used."
-      : dim > w ? "Your parcel is bulky for its weight — you are charged for the dimensional weight."
-      : "Your parcel is heavier than its size — you are charged for the actual weight.";
+    out("note").textContent = !bill ? maddT("Dimensional weight = L × W × H ÷ 5,000. The greater of the two weights is generally used.")
+      : dim > w ? maddT("Your parcel is bulky for its weight — you are charged for the dimensional weight.")
+      : maddT("Your parcel is heavier than its size — you are charged for the actual weight.");
   };
   form.addEventListener("input", update);
   form.addEventListener("submit", function (e) { e.preventDefault(); });
@@ -433,7 +435,7 @@
     x("bill").textContent = fmt(bill) + " kg";
     form.querySelector('[data-step="actual"]').classList.toggle("is-win", kg > 0 && kg >= dim);
     form.querySelector('[data-step="dim"]').classList.toggle("is-win", dim > 0 && dim > kg);
-    x("verdict").textContent = !bill ? "Enter the box size and weight." : dim > kg ? "Light but bulky — charged by its size." : "Heavy for its size — charged by its actual weight.";
+    x("verdict").textContent = !bill ? maddT("Enter the box size and weight.") : dim > kg ? maddT("Light but bulky — charged by its size.") : maddT("Heavy for its size — charged by its actual weight.");
   };
   form.addEventListener("input", update);
   form.addEventListener("submit", function (e) { e.preventDefault(); });
@@ -482,7 +484,7 @@
     Array.prototype.forEach.call(form.querySelectorAll(".is-error"), function (f) { f.classList.remove("is-error"); f.removeAttribute("data-error"); });
     status.hidden = true;
     send.disabled = true;
-    send.textContent = "Sending…";
+    send.textContent = maddT("Sending…");
     fetch(form.getAttribute("data-endpoint"), { method: "POST", body: new FormData(form), credentials: "same-origin" })
       .then(function (res) { return res.json().then(function (json) { return { ok: res.ok, json: json }; }); })
       .then(function (r) {
@@ -495,15 +497,15 @@
           var f = form.querySelector('[data-field="' + k + '"]');
           if (f) { f.classList.add("is-error"); f.setAttribute("data-error", fields[k]); }
         });
-        status.textContent = (r.json && r.json.message) || "Sorry, something went wrong. Please try again.";
+        status.textContent = maddT((r.json && r.json.message) || "Sorry, something went wrong. Please try again.");
         status.hidden = false;
       })
       .catch(function () {
-        status.textContent = "Sorry, your message could not be sent. Please try again or contact us by phone or LINE.";
+        status.textContent = maddT("Sorry, your message could not be sent. Please try again or contact us by phone or LINE.");
         status.hidden = false;
       })
       .finally(function () {
-        if (send.isConnected) { send.disabled = false; send.textContent = "Send message"; }
+        if (send.isConnected) { send.disabled = false; send.textContent = maddT("Send message"); }
       });
   });
 })();
@@ -555,7 +557,7 @@
       if (items.length < 2) return;
       var bar = document.createElement("div");
       bar.className = "madd-swipe";
-      bar.innerHTML = '<span class="madd-swipe-hint">Swipe <span aria-hidden="true">→</span></span><span class="madd-swipe-dots"></span>';
+      bar.innerHTML = '<span class="madd-swipe-hint">' + maddT("Swipe") + ' <span aria-hidden="true">→</span></span><span class="madd-swipe-dots"></span>';
       var dots = bar.querySelector(".madd-swipe-dots");
       var buttons = items.map(function (item, i) {
         var b = document.createElement("button");
@@ -645,7 +647,7 @@
     btn.addEventListener("click", function () {
       copy(build(result)).then(function () {
         btn.classList.add("is-done");
-        btn.lastChild.textContent = "Copied — paste anywhere";
+        btn.lastChild.textContent = maddT("Copied — paste anywhere");
         setTimeout(function () { btn.classList.remove("is-done"); btn.lastChild.textContent = "Copy rates"; }, 2500);
       }, function () { window.prompt("Copy the rates:", build(result)); });
     });

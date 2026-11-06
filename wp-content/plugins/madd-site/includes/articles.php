@@ -76,11 +76,19 @@ function madd_guide_render()
     $out = '<div class="madd-guide"><div class="madd-pro-find madd-guide-find"><label><span class="screen-reader-text">Search articles</span>'
         .'<input type="search" placeholder="Search articles, e.g. customs, packing, e-commerce…" autocomplete="off"></label></div>';
     foreach (madd_guide_topics() as $slug => [$heading, $icon]) {
-        $term = get_term_by('slug', $slug, 'category');
+        // the English topic term ('lang' => '': Polylang would otherwise look it up in the page's language only)
+        $term = get_terms(['taxonomy' => 'category', 'slug' => $slug, 'hide_empty' => false, 'number' => 1, 'lang' => ''])[0] ?? null;
         if (! $term) {
             continue;
         }
-        $posts = get_posts(['category' => $term->term_id, 'numberposts' => -1, 'orderby' => 'menu_order date', 'order' => 'ASC']);
+        // Thai pages: the topic's Thai articles when it has some, otherwise the English ones
+        $cat = $term->term_id;
+        $lang = function_exists('pll_current_language') ? 'en' : null;
+        if (function_exists('madd_is_th') && madd_is_th() && ($thCat = (int) pll_get_term($cat, 'th'))
+            && get_posts(['category' => $thCat, 'numberposts' => 1, 'fields' => 'ids', 'lang' => 'th'])) {
+            [$cat, $lang] = [$thCat, 'th'];
+        }
+        $posts = get_posts(array_filter(['category' => $cat, 'numberposts' => -1, 'orderby' => 'menu_order date', 'order' => 'ASC', 'lang' => $lang]));
         if (! $posts) {
             continue;
         }

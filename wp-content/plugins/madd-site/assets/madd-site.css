@@ -1913,3 +1913,12 @@ body.single-post:has(article.single-entry.category-our-services) .article-post-t
 .madd-contact-btns .madd-btn-call .wp-block-button__link:hover { background: #1b2532; color: #fff; }
 .madd-contact-card p.madd-contact-foot { margin: 0; text-align: center; font-size: 13px; color: var(--madd-muted); }
 .madd-contact-foot a { color: var(--madd-navy); font-weight: 700; text-decoration: none; }
+
+/* Check Rate card: note under the intro */
+.madd-quote-card p.madd-quote-note { margin: -4px 0 14px !important; font-size: 12px; line-height: 1.55; color: #8A94A3; }
+
+/* Thai pages: no letter-spacing / uppercase tracking on Thai script (it splits the vowels and tone marks) */
+:lang(th) .madd-eyebrow, :lang(th) .madd-kicker, :lang(th) .madd-section .madd-eyebrow, :lang(th) .madd-contact-label,
+:lang(th) .madd-carrier-tag, :lang(th) .madd-carriers-terms-title, :lang(th) .madd-sendbox-1 { letter-spacing: 0; }
+/* language switcher in the menu */
+.menu-item.lang-item > a { font-weight: 700; }

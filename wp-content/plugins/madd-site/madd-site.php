@@ -21,6 +21,7 @@ require MADD_SITE_DIR.'includes/contact.php';
 require MADD_SITE_DIR.'includes/articles.php';
 require MADD_SITE_DIR.'includes/chat.php';
 require MADD_SITE_DIR.'includes/quote-pause.php';
+require MADD_SITE_DIR.'includes/i18n.php';
 
 // Hero background photo (media library attachment id saved in option madd_hero_image).
 function madd_site_hero_css()
