@@ -24,16 +24,17 @@ add_action('template_redirect', function () {
         return;
     }
     $url = is_numeric($to) ? get_permalink((int) $to) : $to;
-    // keep the query string (e.g. the waybill's tracking QR: /tracking/?tn=… → Check Status ?tn=…)
-    if ($url && ! empty($_GET) && ! wp_parse_url($url, PHP_URL_QUERY)) {
-        $url = add_query_arg(array_map('rawurlencode', wp_unslash($_GET)), $url);
-    }
     // never redirect a URL to itself (e.g. once pretty permalinks give an article its old slug back)
     $target = '/'.trim(rawurldecode((string) wp_parse_url($url, PHP_URL_PATH)), '/').'/';
-    if ($url && ($target !== $path || wp_parse_url($url, PHP_URL_QUERY))) {
-        wp_safe_redirect($url, 301);
-        exit;
+    if (! $url || ($target === $path && ! wp_parse_url($url, PHP_URL_QUERY))) {
+        return;
     }
+    // keep the query string (e.g. the waybill's tracking QR: /tracking/?tn=… → Check Status ?tn=…)
+    if (! empty($_GET) && ! wp_parse_url($url, PHP_URL_QUERY)) {
+        $url = add_query_arg(array_map('rawurlencode', wp_unslash($_GET)), $url);
+    }
+    wp_safe_redirect($url, 301);
+    exit;
 }, 1);
 
 // The Shipping Guide page (option madd_guide_page) lists the articles by topic — see [madd_shipping_guide].
@@ -141,7 +142,7 @@ add_filter('the_content', function ($content) {
     return '<p class="madd-art-crumb"><a href="'.esc_url(madd_guide_url()).'">← Articles</a>'.($topic ? ' <span>/</span> '.esc_html($topic) : '').'</p>'
         .$content
         .($links ? '<div class="madd-art-related"><p class="madd-art-related-title">Related pages</p><ul>'.$links.'</ul></div>' : '')
-        .'<div class="madd-art-cta"><div><p class="madd-art-cta-title">Ready to ship from Thailand?</p><p>Check your shipping rate online, or ask our team on LINE.</p></div>'
-        .'<p class="madd-art-cta-btns"><a class="is-rate" href="'.esc_url(get_permalink(24)).'#check-rate">Check shipping rate</a>'
+        .'<div class="madd-art-cta"><div><p class="madd-art-cta-title">Ready to ship from Thailand?</p><p>'.(madd_quote_paused() ? 'Ask our team on LINE for a shipping quote.' : 'Check your shipping rate online, or ask our team on LINE.').'</p></div>'
+        .'<p class="madd-art-cta-btns">'.(madd_quote_paused() ? '' : '<a class="is-rate" href="'.esc_url(get_permalink(24)).'#check-rate">Check shipping rate</a>')
         .'<a class="is-line" href="https://line.me/ti/p/~madd.co.th" target="_blank" rel="noopener">Chat on LINE</a></p></div>';
 }, 20);
