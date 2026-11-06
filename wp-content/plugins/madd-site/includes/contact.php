@@ -96,10 +96,13 @@ function madd_ct_submit(WP_REST_Request $req)
     }
     set_transient('madd_ct_'.$ip, $count + 1, HOUR_IN_SECONDS);
 
-    wp_mail(MADD_CONTACT_TO, '[Website] '.$subject.' — '.$name,
+    // whether the server could hand the e-mail over (shown in Contact Messages › "E-mail sent"); the message is saved either way
+    $sent = wp_mail(MADD_CONTACT_TO, '[Website] '.$subject.' — '.$name,
         "Name: {$name}\nE-mail: {$email}".($phone ? "\nPhone: {$phone}" : '')."\nSubject: {$subject}\n\n{$message}\n\n— "
         .admin_url('post.php?post='.$id.'&action=edit'),
         ['Reply-To: '.$name.' <'.$email.'>']);
+    update_post_meta($id, 'madd_mail_sent', $sent ? 1 : 0);
+    update_post_meta($id, 'madd_site', home_url());
 
     return ['ok' => true];
 }
@@ -129,7 +132,7 @@ function madd_ct_form()
 // ---------------------------------------------------------------- admin list
 
 add_filter('manage_'.MADD_CT_TYPE.'_posts_columns', function ($cols) {
-    return ['cb' => $cols['cb'], 'title' => 'Subject — name', 'madd_email' => 'E-mail', 'madd_phone' => 'Phone', 'madd_msg' => 'Message', 'date' => 'Received'];
+    return ['cb' => $cols['cb'], 'title' => 'Subject — name', 'madd_email' => 'E-mail', 'madd_phone' => 'Phone', 'madd_msg' => 'Message', 'madd_sent' => 'E-mail sent', 'date' => 'Received'];
 });
 add_action('manage_'.MADD_CT_TYPE.'_posts_custom_column', function ($col, $id) {
     if ($col === 'madd_email') {
@@ -139,5 +142,10 @@ add_action('manage_'.MADD_CT_TYPE.'_posts_custom_column', function ($col, $id) {
         echo esc_html(get_post_meta($id, 'madd_phone', true));
     } elseif ($col === 'madd_msg') {
         echo esc_html(wp_trim_words(get_post_field('post_content', $id), 24));
+    } elseif ($col === 'madd_sent') {
+        $sent = get_post_meta($id, 'madd_mail_sent', true);
+        $site = (string) wp_parse_url((string) get_post_meta($id, 'madd_site', true), PHP_URL_HOST);
+        echo $sent === '' ? '—' : ($sent ? '✅ Sent to '.esc_html(MADD_CONTACT_TO) : '❌ Not sent (server mail failed)');
+        echo $site ? '<br><small>from '.esc_html($site).'</small>' : '';
     }
 }, 10, 2);

@@ -192,6 +192,8 @@ add_action('wp_enqueue_scripts', function () {
         'Heavy for its size — charged by its actual weight.' => 'หนักเมื่อเทียบกับขนาด — คิดค่าส่งตามน้ำหนักจริง',
         'Copied — paste anywhere' => 'คัดลอกแล้ว — วางได้ทุกที่',
         'Swipe' => 'ปัด',
+        'Thank you — your message has been sent.' => 'ขอบคุณค่ะ — ส่งข้อความเรียบร้อยแล้ว',
+        'Our team will get back to you as soon as possible. For urgent questions, call +66 (0)2 629 4441-2 or chat with us on LINE.' => 'ทีมงานจะติดต่อกลับโดยเร็วที่สุด หากเร่งด่วน โทร 02 629 4441-2 หรือแชทกับเราทาง LINE',
         'Visitors today' => 'ผู้เข้าชมวันนี้',
         'This month' => 'เดือนนี้',
         'Total' => 'ทั้งหมด',

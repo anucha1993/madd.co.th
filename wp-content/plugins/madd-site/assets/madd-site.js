@@ -489,7 +489,7 @@ window.maddT = function (s) { return (window.MaddTh && window.MaddTh[s]) || s; }
       .then(function (res) { return res.json().then(function (json) { return { ok: res.ok, json: json }; }); })
       .then(function (r) {
         if (r.ok && r.json && r.json.ok) {
-          form.innerHTML = '<div class="madd-ct-done"><strong>Thank you — your message has been sent.</strong><span>Our team will get back to you as soon as possible. For urgent questions, call +66 (0)2 629 4441-2 or chat with us on LINE.</span></div>';
+          form.innerHTML = '<div class="madd-ct-done"><strong>' + maddT("Thank you — your message has been sent.") + '</strong><span>' + maddT("Our team will get back to you as soon as possible. For urgent questions, call +66 (0)2 629 4441-2 or chat with us on LINE.") + '</span></div>';
           return;
         }
         var fields = (r.json && r.json.data && r.json.data.fields) || {};
