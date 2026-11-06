@@ -1920,5 +1920,8 @@ body.single-post:has(article.single-entry.category-our-services) .article-post-t
 /* Thai pages: no letter-spacing / uppercase tracking on Thai script (it splits the vowels and tone marks) */
 :lang(th) .madd-eyebrow, :lang(th) .madd-kicker, :lang(th) .madd-section .madd-eyebrow, :lang(th) .madd-contact-label,
 :lang(th) .madd-carrier-tag, :lang(th) .madd-carriers-terms-title, :lang(th) .madd-sendbox-1 { letter-spacing: 0; }
-/* language switcher in the menu */
-.menu-item.lang-item > a { font-weight: 700; }
+/* language switcher in the menu: flag only */
+.menu-item.lang-item > a { display: inline-flex; align-items: center; --pll-flag-width: 26px; --pll-flag-border-radius: 18; }
+.menu-item.lang-item .pll-switcher-flag { box-shadow: 0 0 0 1px rgba(39,52,68,.15); transition: transform .2s; }
+.menu-item.lang-item > a:hover .pll-switcher-flag { transform: scale(1.1); }
+#mobile-drawer .menu-item.lang-item > a { --pll-flag-width: 30px; }
